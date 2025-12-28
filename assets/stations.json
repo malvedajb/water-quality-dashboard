@@ -1,0 +1,40 @@
+{
+  "stations": [
+    {
+      "id": "S01",
+      "code": "ST-01",
+      "name": "Station 01 - West Bay",
+      "municipality": "Binangonan",
+      "lat": 14.464,
+      "lng": 121.192,
+      "parameters": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.1, "cod_mgL": 22, "turb_ntu": 15, "temp_c": 29.8 }
+    },
+    {
+      "id": "S02",
+      "code": "ST-02",
+      "name": "Station 02 - North Shore",
+      "municipality": "Taytay",
+      "lat": 14.558,
+      "lng": 121.145,
+      "parameters": { "do_mgL": 5.4, "ph": 7.2, "bod_mgL": 4.2, "cod_mgL": 28, "turb_ntu": 18, "temp_c": 30.1 }
+    },
+    {
+      "id": "S03",
+      "code": "ST-03",
+      "name": "Station 03 - Central North",
+      "municipality": "Angono",
+      "lat": 14.530,
+      "lng": 121.167,
+      "parameters": { "do_mgL": 6.8, "ph": 7.6, "bod_mgL": 2.9, "cod_mgL": 20, "turb_ntu": 12, "temp_c": 29.3 }
+    },
+    {
+      "id": "S04",
+      "code": "ST-04",
+      "name": "Station 04 - Northeast",
+      "municipality": "Cardona",
+      "lat": 14.486,
+      "lng": 121.230,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    }
+  ]
+}
