@@ -11,7 +11,7 @@ window.initMap = async function initMap() {
 
   window.markersLayer = L.layerGroup().addTo(window.map);
 
-  // Approx boundary (replace with real GeoJSON later)
+  // Approx boundary of Laguna Lake
   const approxBoundary = {
     type: "Feature",
     properties: { name: "Laguna Lake (Approx.)" },
@@ -446,9 +446,15 @@ window.initMap = async function initMap() {
     }
   };
 
+  // Map fill for Laguna Lake boundary
   const boundaryLayer = L.geoJSON(approxBoundary, {
-    style: { color: "#6aa6ff", weight: 2, fillOpacity: 0.08 }
-  }).addTo(window.map);
+  style: {
+    color: "#ffcb6aff",
+    weight: 4,
+    fillOpacity: 0.20,
+    dashArray: "10, 15"   // ← dashed line
+  }
+}).addTo(window.map);
 
   window.map.fitBounds(boundaryLayer.getBounds(), { padding: [10, 10] });
 
