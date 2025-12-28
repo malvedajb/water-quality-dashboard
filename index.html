@@ -32,9 +32,6 @@
         <div class="search">
           <input id="searchInput" type="text" placeholder="Search station (e.g., Station 01, Bay, Victoria)..." />
         </div>
-        <div class="footnote">
-          Dataset note: values here are placeholders. Replace with the numbers extracted from your PDFs.
-        </div>
       </div>
       <div id="stationList" class="station-list"></div>
     </aside>
@@ -51,9 +48,6 @@
             <span id="selectedStationLabel">No station selected</span>
           </h3>
           <div class="cards" id="paramCards"></div>
-          <div class="footnote">
-            Status colors are heuristic (for demo). You can adjust thresholds to match your course references or a standard classification.
-          </div>
         </div>
 
         <div class="panel">
@@ -62,9 +56,6 @@
             <span>DO, pH, BOD, COD, Turbidity, Temp</span>
           </h3>
           <canvas id="barChart" height="160"></canvas>
-          <div class="footnote">
-            Tip: If your PDFs show ranges, use the average (midpoint) for this dashboard snapshot.
-          </div>
         </div>
       </section>
     </main>
