@@ -17,14 +17,22 @@ window.renderBarChart = function renderBarChart(st) {
         }]
       },
       options: {
-        responsive: true,
         plugins: {
-          legend: { display: false },
-          tooltip: { enabled: true }
+          legend: {
+            labels: {
+              color: 'currentColor'
+            }
+          }
         },
         scales: {
-          x: { ticks: { color: "rgba(234,241,255,.75)" }, grid: { color: "rgba(255,255,255,.06)" } },
-          y: { ticks: { color: "rgba(234,241,255,.75)" }, grid: { color: "rgba(255,255,255,.06)" } }
+          x: {
+            ticks: { color: 'currentColor' },
+            grid: { color: 'rgba(11,18,32,.1)' }
+          },
+          y: {
+            ticks: { color: 'currentColor' },
+            grid: { color: 'rgba(11,18,32,.1)' }
+          }
         }
       }
     });
