@@ -3,37 +3,145 @@
     {
       "id": "S01",
       "code": "ST-01",
-      "name": "Station 01 - West Bay",
+      "name": "Station 01 - (Central West Bay)",
       "municipality": "Binangonan",
-      "lat": 14.464,
-      "lng": 121.192,
+      "lat": 14.420743085139904,
+      "lng": 121.18170187696313,
       "parameters": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.1, "cod_mgL": 22, "turb_ntu": 15, "temp_c": 29.8 }
     },
     {
       "id": "S02",
       "code": "ST-02",
-      "name": "Station 02 - North Shore",
-      "municipality": "Taytay",
-      "lat": 14.558,
-      "lng": 121.145,
+      "name": "Station 02 - (East Bay)",
+      "municipality": "Pila",
+      "lat": 14.27236025496613,
+      "lng": 121.34139392101912,
       "parameters": { "do_mgL": 5.4, "ph": 7.2, "bod_mgL": 4.2, "cod_mgL": 28, "turb_ntu": 18, "temp_c": 30.1 }
-    },
-    {
-      "id": "S03",
-      "code": "ST-03",
-      "name": "Station 03 - Central North",
-      "municipality": "Angono",
-      "lat": 14.530,
-      "lng": 121.167,
-      "parameters": { "do_mgL": 6.8, "ph": 7.6, "bod_mgL": 2.9, "cod_mgL": 20, "turb_ntu": 12, "temp_c": 29.3 }
     },
     {
       "id": "S04",
       "code": "ST-04",
-      "name": "Station 04 - Northeast",
+      "name": "Station 04 - (Central Bay)",
+      "municipality": "Pililia",
+      "lat": 14.389105710619617,
+      "lng": 121.28404995974387,
+      "parameters": { "do_mgL": 6.8, "ph": 7.6, "bod_mgL": 2.9, "cod_mgL": 20, "turb_ntu": 12, "temp_c": 29.3 }
+    },
+    {
+      "id": "S05",
+      "code": "ST-05",
+      "name": "Station 05 - (Northern West Bay)",
+      "municipality": "Binangonan",
+      "lat": 14.478381856478066,
+      "lng": 121.13379426374593,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S08",
+      "code": "ST-08",
+      "name": "Station 08 - (South Bay)",
+      "municipality": "Los Banos",
+      "lat": 14.242812633168896,
+      "lng": 121.23759409238136,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S13",
+      "code": "ST-13",
+      "name": "Station 13 - Taytay",
+      "municipality": "Taytay",
+      "lat": 14.502276472440371,
+      "lng": 121.11492156762989,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S15",
+      "code": "ST-15",
+      "name": "Station 15 - San Pedro (West Bay)",
+      "municipality": "San Pedro",
+      "lat": 14.371527453993039,
+      "lng": 121.09677474444135,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S16",
+      "code": "ST-16",
+      "name": "Station 16 - Sta. Rosa (West Bay)",
+      "municipality": "Sta. Rosa",
+      "lat": 14.323614592392786,
+      "lng": 121.13343979672038,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S17",
+      "code": "ST-17",
+      "name": "Station 17 - Fish Sanctuary (Central Bay)",
+      "municipality": "Binangonan",
+      "lat": 14.293614199327948,
+      "lng": 121.2721681877058,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S18",
+      "code": "ST-18",
+      "name": "Station 18 - Pagsangjan (East Bay)",
+      "municipality": "Pagsangjan",
+      "lat": 14.314127351616264,
+      "lng": 121.38935973426061,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S19",
+      "code": "ST-19",
+      "name": "Station 19 - (Muntinlupa)",
+      "municipality": "Muntinlupa",
+      "lat": 14.407457855105392,
+      "lng": 121.08287918137387,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S20",
+      "code": "ST-20",
+      "name": "Station 20 - (GEMS)",
+      "municipality": "Binangonan",
+      "lat": 14.418908865049843,
+      "lng": 121.22193473278213,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S21",
+      "code": "ST-21",
+      "name": "Station 21 - Cardona (Talim)",
       "municipality": "Cardona",
-      "lat": 14.486,
-      "lng": 121.230,
+      "lat": 14.338151031957764,
+      "lng": 121.2804554942951,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S22",
+      "code": "ST-22",
+      "name": "Station 22 - (Jala-Jala)",
+      "municipality": "Jala-Jala",
+      "lat": 14.257533297948939,
+      "lng": 121.26915394586314,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S23",
+      "code": "ST-23",
+      "name": "Station 23 - (Lumban)",
+      "municipality": "Lumban",
+      "lat": 14.326206862894168,
+      "lng": 121.419567926166,
+      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+    },
+    {
+      "id": "S24",
+      "code": "ST-24",
+      "name": "Station 24 - Cardona (North Central Bay)",
+      "municipality": "Cardona",
+      "lat": 14.459153005503808,
+      "lng": 121.25037875428904,
       "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
     }
   ]
