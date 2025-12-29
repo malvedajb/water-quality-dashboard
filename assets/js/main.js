@@ -1,8 +1,4 @@
 
-
-/* =========================================================
-   Station Selection Logic
-   ========================================================= */
 window.selectStation = function selectStation(id, panTo = false) {
   const st = window.STATIONS.find((s) => s.id === id);
   if (!st) {
@@ -71,9 +67,6 @@ window.selectStation = function selectStation(id, panTo = false) {
   }
 };
 
-/* =========================================================
-   BOOTSTRAP (runs AFTER DOM is ready)
-   ========================================================= */
 function bootstrap() {
   if (typeof window.loadStations !== "function") {
     console.error("loadStations is not defined");
@@ -116,5 +109,19 @@ function bootstrap() {
       alert("Prototype failed to load.\n\n" + err.message);
     });
 }
+
+const sidebar = document.querySelector(".sidebar");
+const toggle = document.getElementById("stationToggle");
+
+toggle?.addEventListener("click", () => {
+  sidebar.classList.toggle("open");
+});
+
+// Optional: close dropdown after selecting a station
+document.getElementById("stationList")?.addEventListener("click", (e) => {
+  if (e.target.closest(".station-item")) {
+    sidebar.classList.remove("open");
+  }
+});
 
 document.addEventListener("DOMContentLoaded", bootstrap);

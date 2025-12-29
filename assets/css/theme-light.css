@@ -289,3 +289,68 @@ input::placeholder {
 canvas {
     color: var(--text);
 }
+
+/* ======================================
+   MOBILE STATION DROPDOWN
+   ====================================== */
+
+/* Toggle button (hidden on desktop) */
+.station-toggle {
+    display: none;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, .85);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Chevron */
+.station-toggle .chev {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: rotate(45deg);
+    transition: transform .2s ease;
+}
+
+/* Rotate when open */
+.sidebar.open .station-toggle .chev {
+    transform: rotate(-135deg);
+}
+
+@media (max-width: 980px) {
+
+    .sidebar {
+        border-radius: 14px;
+        overflow: visible;
+    }
+
+    .station-toggle {
+        display: flex;
+    }
+
+    .station-list {
+        display: none;
+        max-height: 320px;
+        overflow-y: auto;
+        margin-top: 8px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .95);
+        border: 1px solid var(--line);
+    }
+
+    /* Show when open */
+    .sidebar.open .station-list {
+        display: block;
+    }
+}

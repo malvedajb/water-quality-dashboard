@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Leaflet -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="./assets/css/theme-light.css">
   <title>LLDA Water Quality Dashboard</title>
 </head>
+
 <body>
   <header>
     <div class="title">Laguna Lake Water Quality Dashboard</div>
     <div class="subtitle">Click a station to view details.</div>
   </header>
   <div class="layout">
+    <!-- Stations -->
     <aside class="sidebar">
       <div class="side-top">
         <div class="search">
           <input id="searchInput" type="text" placeholder="Search station (e.g., Station 01, Bay, Victoria)..." />
         </div>
+        <!-- Mobile Dropdown toggle -->
+        <button class="station-toggle" id="stationToggle">
+          Select Station
+          <span class="chev"></span>
+        </button>
       </div>
       <div id="stationList" class="station-list"></div>
     </aside>
@@ -61,7 +62,7 @@
     </main>
   </div>
 </body>
-  <!-- App scripts -->
+<!-- App scripts -->
 <script src="./assets/js/config.js"></script>
 <script src="./assets/js/status.js"></script>
 <script src="./assets/js/data.js"></script>
