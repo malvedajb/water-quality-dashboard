@@ -34,6 +34,22 @@
           <span class="chev"></span>
         </button>
       </div>
+      <div class="snapshot-controls">
+        <label>
+          Year:
+          <select id="yearSelect"></select>
+        </label>
+        <label>
+          Quarter:
+          <select id="quarterSelect">
+            <option value="Q1">Q1</option>
+            <option value="Q2">Q2</option>
+            <option value="Q3">Q3</option>
+            <option value="Q4">Q4</option>
+          </select>
+        </label>
+      </div>
+
       <div id="stationList" class="station-list"></div>
     </aside>
 
@@ -56,7 +72,13 @@
             Parameter Chart
             <span>DO, pH, BOD, COD, Turbidity, Temp</span>
           </h3>
-          <canvas id="barChart" height="160"></canvas>
+          <label style="display:none;align-items:center;gap:.5rem;">
+            <input type="checkbox" id="trendToggle" checked />
+            Show trend (by quarter)
+          </label>
+          <div id="chartWrap">
+            <canvas id="barChart" height="160"></canvas>
+          </div>
         </div>
       </section>
     </main>
