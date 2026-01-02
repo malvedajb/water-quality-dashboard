@@ -6,6 +6,10 @@ window.selectStation = function selectStation(id, panTo = false) {
     return;
   }
 
+  // Ensure global defaults exist (safe even if already set elsewhere)
+  window.selectedYear = window.selectedYear || "2025";
+  window.selectedQuarter = window.selectedQuarter || "Q3";
+
   window.selectedId = id;
 
   if (typeof window.renderList === "function") {
@@ -44,15 +48,21 @@ window.selectStation = function selectStation(id, panTo = false) {
     window.renderBarChart(st);
   }
 
-  // SAFE parameter access
-  const p = (st.parameters && typeof st.parameters === "object")
-    ? st.parameters
-    : {};
+  // ---- Snapshot source (year/quarter) ----
+  const year = window.selectedYear;
+  const quarter = window.selectedQuarter;
+
+  // SAFE quarter data access
+  const p =
+    (st?.data?.[year]?.[quarter] && typeof st.data[year][quarter] === "object")
+      ? st.data[year][quarter]
+      : {};
 
   const popupHtml = `
     <div style="font-family:system-ui;font-size:12px;line-height:1.25">
       <b>${st.name}</b><br/>
-      <span style="opacity:.8">${st.municipality || ""}</span><br/><br/>
+      <span style="opacity:.8">${st.municipality || ""}</span><br/>
+      <span style="opacity:.8">${year} ${quarter} Snapshot</span><br/><br/>
       DO: <b>${p.do_mgL ?? "—"}</b> mg/L<br/>
       pH: <b>${p.ph ?? "—"}</b><br/>
       BOD: <b>${p.bod_mgL ?? "—"}</b> mg/L<br/>
@@ -66,6 +76,7 @@ window.selectStation = function selectStation(id, panTo = false) {
     st.__marker.bindPopup(popupHtml).openPopup();
   }
 };
+
 
 function bootstrap() {
   if (typeof window.loadStations !== "function") {
