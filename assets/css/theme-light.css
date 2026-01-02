@@ -1,382 +1,333 @@
 /* =========================================================
-   LIGHT THEME – DROP-IN REPLACEMENT
-   Same structure, same selectors, new colors only
+   LIGHT THEME
    ========================================================= */
 
 /* ---------- TOKENS ---------- */
 :root {
-    /* Brand palette */
-    --bg: #F7FAFB;
-    --panel: #FFFFFF;
-    --card: #FFFFFF;
+  --bg: #F7FAFB;
+  --panel: #FFFFFF;
+  --card: #FFFFFF;
 
-    --text: #0b1220;
-    --muted: rgba(11, 18, 32, .65);
+  --text: #0b1220;
+  --muted: rgba(11, 18, 32, .65);
 
-    --line: rgba(11, 18, 32, .12);
+  --line: rgba(11, 18, 32, .12);
 
-    --ok: #2EC4B6;
-    --warn: #FF9F1C;
-    --bad: #ff6b6b;
-    --accent: #2EC4B6;
+  --ok: #2EC4B6;
+  --warn: #FF9F1C;
+  --bad: #ff6b6b;
+  --accent: #2EC4B6;
 }
 
 /* ---------- BASE ---------- */
-* { box-sizing: border-box }
+* { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color: var(--text);
-    background: linear-gradient(180deg, #CBF3F0 0%, var(--bg) 65%);
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #CBF3F0 0%, var(--bg) 65%);
 }
 
 /* ---------- HEADER ---------- */
 header {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--line);
-    background: rgba(255, 255, 255, .75);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, .75);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 header .title {
-    font-weight: 700;
-    letter-spacing: .2px;
-    font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  font-size: 16px;
 }
 
 header .subtitle {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
 }
 
 /* ---------- LAYOUT ---------- */
 .layout {
-    display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 12px;
-    padding: 12px;
-    height: calc(100vh - 68px);
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 12px;
+  padding: 12px;
+  height: calc(100vh - 68px);
 }
 
 /* ---------- SIDEBAR ---------- */
 .sidebar {
-    background: rgba(255, 255, 255, .8);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
+  background: rgba(255, 255, 255, .8);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .side-top {
-    padding: 12px;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .search {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 input {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, .85);
-    color: var(--text);
-    outline: none;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .85);
+  color: var(--text);
+  outline: none;
 }
 
 input::placeholder {
-    color: rgba(11, 18, 32, .45);
+  color: rgba(11, 18, 32, .45);
+}
+
+/* ---------- SNAPSHOT CONTROLS (Year/Quarter) ---------- */
+.snapshot-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0;
+  width: 100%;
+}
+
+.snapshot-controls label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 85%;
+  max-width: 260px;
+  font-size: 0.85rem;
+  color: inherit;
+}
+
+.snapshot-controls select {
+  flex: 1;
+  min-width: 110px;
 }
 
 /* ---------- STATION LIST ---------- */
 .station-list {
-    padding: 8px;
-    overflow: auto;
-    min-height: 0;
+  padding: 8px;
+  overflow: auto;
+  min-height: 0;
 }
 
 .station-item {
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid rgba(11, 18, 32, .06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    margin-bottom: 6px;
-    background: rgba(255, 255, 255, .85);
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(11, 18, 32, .06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 6px;
+  background: rgba(255, 255, 255, .85);
 }
 
 .station-item:hover {
-    border-color: rgba(46, 196, 182, .35);
-    background: rgba(203, 243, 240, .6);
+  border-color: rgba(46, 196, 182, .35);
+  background: rgba(203, 243, 240, .6);
 }
 
 .station-item.active {
-    border-color: rgba(46, 196, 182, .65);
-    background: rgba(203, 243, 240, .85);
+  border-color: rgba(46, 196, 182, .65);
+  background: rgba(203, 243, 240, .85);
 }
 
 .station-name {
-    font-weight: 650;
-    font-size: 13px;
-    line-height: 1.2;
+  font-weight: 650;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
 .station-meta {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
 }
 
 .badge {
-    font-size: 11px;
-    padding: 5px 8px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    color: var(--muted);
-    white-space: nowrap;
-    background: rgba(255, 255, 255, .7);
+  font-size: 11px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+  background: rgba(255, 255, 255, .7);
 }
 
 /* ---------- MAIN ---------- */
 .main {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    gap: 12px;
-    min-height: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 12px;
+  min-height: 0;
 }
 
 .map-wrap {
-    border-radius: 14px;
-    border: 1px solid var(--line);
-    overflow: hidden;
-    background: rgba(255, 255, 255, .8);
-    position: relative;
-    min-height: 320px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: rgba(255, 255, 255, .8);
+  position: relative;
+  min-height: 320px;
 }
 
 #map {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 /* ---------- DASHBOARD ---------- */
 .dashboard {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  min-height: 0;
 }
 
 .panel {
-    background: rgba(255, 255, 255, .85);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px;
-    min-height: 260px;
+  background: rgba(255, 255, 255, .85);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  min-height: 260px;
 }
 
+/* Title row (fix overflow on desktop) */
 .panel h3 {
-    margin: 0 0 10px 0;
-    font-size: 13px;
-    letter-spacing: .2px;
-    color: var(--text);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  letter-spacing: .2px;
+  color: var(--text);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
+/* Right-side inline descriptor */
 .panel h3 span {
-    color: var(--muted);
-    font-weight: 500;
-    font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 12px;
+
+  /* the real overflow fix */
+  min-width: 0;
+  flex: 1 1 auto;
+  max-width: 70%;
+  margin-left: auto;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
 }
 
 /* ---------- CARDS ---------- */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .card {
-    background: rgba(255, 255, 255, .95);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 10px;
-    min-height: 74px;
+  background: rgba(255, 255, 255, .95);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  min-height: 74px;
 }
 
 .label {
-    color: var(--muted);
-    font-size: 11px;
+  color: var(--muted);
+  font-size: 11px;
 }
 
 .value {
-    margin-top: 6px;
-    font-size: 16px;
-    font-weight: 750;
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 750;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
 .unit {
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 600;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .status {
-    margin-top: 6px;
-    font-size: 11px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 3px rgba(46, 196, 182, .18);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(46, 196, 182, .18);
 }
 
 .footnote {
-    color: rgba(11, 18, 32, .55);
-    font-size: 11px;
-    margin-top: 10px;
-    line-height: 1.35;
+  color: rgba(11, 18, 32, .55);
+  font-size: 11px;
+  margin-top: 10px;
+  line-height: 1.35;
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 980px) {
-    .layout {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-
-    .main {
-        grid-template-rows: 420px auto;
-    }
-
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ================================
-   Chart.js – light theme text fix
-   ================================ */
-canvas {
-    color: var(--text);
-}
-
-/* ======================================
-   MOBILE STATION DROPDOWN
-   ====================================== */
-
-/* Toggle button (hidden on desktop) */
-.station-toggle {
-    display: none;
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, .85);
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 600;
-    text-align: left;
-    cursor: pointer;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Chevron */
-.station-toggle .chev {
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid var(--muted);
-    border-bottom: 2px solid var(--muted);
-    transform: rotate(45deg);
-    transition: transform .2s ease;
-}
-
-/* Rotate when open */
-.sidebar.open .station-toggle .chev {
-    transform: rotate(-135deg);
-}
-
-@media (max-width: 980px) {
-
-    .sidebar {
-        border-radius: 14px;
-        overflow: visible;
-    }
-
-    .station-toggle {
-        display: flex;
-    }
-
-    .station-list {
-        display: none;
-        max-height: 320px;
-        overflow-y: auto;
-        margin-top: 8px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, .95);
-        border: 1px solid var(--line);
-    }
-
-    /* Show when open */
-    .sidebar.open .station-list {
-        display: block;
-    }
-}
-
-/* ===== Chart container MUST have a stable height on mobile ===== */
-#panelRight {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;          /* critical for flex children */
-}
-
+/* ---------- CHART WRAPPER (prevents mobile infinite growth) ---------- */
 #chartWrap {
-  position: relative;     /* Chart.js likes this */
+  position: relative;
   width: 100%;
   min-height: 0;
-  overflow: hidden;       /* prevents runaway growth */
-  height: 260px;          /* mobile default height */
+  overflow: hidden;
+
+  /* stable height by default (desktop too) */
+  height: 340px;
 }
 
-/* Let desktop have more space */
-@media (min-width: 981px) {
+@media (max-width: 980px) {
   #chartWrap {
-    height: 100%;         /* or a bigger fixed height if you prefer */
-    min-height: 320px;
+    height: 260px;
   }
 }
 
-/* Canvas should fill the wrapper, not define its own height */
+/* Canvas fills wrapper */
 #chartWrap canvas,
 #barChart {
   display: block;
@@ -384,40 +335,93 @@ canvas {
   height: 100% !important;
 }
 
-/* ===============================
-   Snapshot controls (Year / Quarter)
-   =============================== */
+/* Chart.js text color */
+canvas { color: var(--text); }
 
-.snapshot-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
 
-  align-items: center;      /* center the group in the sidebar */
-  justify-content: center;
+  .main {
+    grid-template-rows: 420px auto;
+  }
 
-  padding: 0.75rem 0;
-  margin: 0 auto;           /* horizontal centering */
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- MOBILE STATION DROPDOWN ---------- */
+.station-toggle {
+  display: none;
   width: 100%;
-}
-
-/* Each label becomes a neat row */
-.snapshot-controls label {
-  display: flex;
-  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .85);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
   justify-content: space-between;
-
-  gap: 0.5rem;
-  width: 85%;               /* keeps it centered but readable */
-  max-width: 260px;
-
-  font-size: 0.85rem;
-  color: inherit;
+  align-items: center;
 }
 
-/* Make selects consistent */
-.snapshot-controls select {
-  flex: 1;
-  min-width: 110px;
+.station-toggle .chev {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform .2s ease;
 }
 
+.sidebar.open .station-toggle .chev {
+  transform: rotate(-135deg);
+}
+
+@media (max-width: 980px) {
+  .sidebar {
+    border-radius: 14px;
+    overflow: visible;
+  }
+
+  .station-toggle {
+    display: flex;
+  }
+
+  .station-list {
+    display: none;
+    max-height: 320px;
+    overflow-y: auto;
+    margin-top: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .95);
+    border: 1px solid var(--line);
+  }
+
+  .sidebar.open .station-list {
+    display: block;
+  }
+
+  /* On small phones, let the h3 span wrap instead of ellipsis */
+  @media (max-width: 640px) {
+    .panel h3 {
+      flex-direction: column;
+      align-items: flex-start;
+      overflow: visible;
+    }
+    .panel h3 span {
+      max-width: 100%;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      margin-left: 0;
+      text-align: left;
+    }
+  }
+}
