@@ -7,7 +7,6 @@ window.renderBarChart = function renderBarChart(st) {
 
   const labels = ["DO", "pH", "BOD", "COD", "Turb.", "Temp"];
 
-  // Helper: turn a quarter object into the bar values in label order
   const toValues = (p = {}) => [
     p.do_mgL ?? null,
     p.ph ?? null,
@@ -19,10 +18,15 @@ window.renderBarChart = function renderBarChart(st) {
 
   const yearData = st?.data?.[year] || {};
 
+  // Quarter order + cutoff up to selected quarter
+  const quarterOrder = ["Q1", "Q2", "Q3", "Q4"];
+  const cutoffIndex = Math.max(0, quarterOrder.indexOf(quarter)); // Q3 -> 2
+  const quartersToShow = quarterOrder.slice(0, cutoffIndex + 1);
+
   let datasets = [];
 
   if (!showTrend) {
-    // ---- Snapshot mode: one dataset for selected quarter ----
+    // Snapshot mode: one dataset for selected quarter
     const p = yearData?.[quarter] || {};
     datasets = [
       {
@@ -31,15 +35,24 @@ window.renderBarChart = function renderBarChart(st) {
       }
     ];
   } else {
-    // ---- Trend mode (still BAR): grouped bars per parameter, one dataset per quarter ----
-    const quarterOrder = ["Q1", "Q2", "Q3", "Q4"];
-
-    datasets = quarterOrder
+    // Trend mode (still BAR): grouped bars per parameter, one dataset per quarter up to selected
+    datasets = quartersToShow
       .filter((q) => yearData[q]) // only quarters that exist
       .map((q) => ({
         label: `${year} ${q}`,
         data: toValues(yearData[q])
       }));
+
+    // Fallback: if nothing exists (rare), show snapshot so chart doesn't go empty
+    if (!datasets.length) {
+      const p = yearData?.[quarter] || {};
+      datasets = [
+        {
+          label: `Snapshot • ${year} ${quarter}`,
+          data: toValues(p)
+        }
+      ];
+    }
   }
 
   if (!window.barChart) {

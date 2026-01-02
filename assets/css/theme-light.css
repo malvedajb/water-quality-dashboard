@@ -352,3 +352,35 @@ canvas {
         display: block;
     }
 }
+
+/* ===== Chart container MUST have a stable height on mobile ===== */
+#panelRight {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;          /* critical for flex children */
+}
+
+#chartWrap {
+  position: relative;     /* Chart.js likes this */
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;       /* prevents runaway growth */
+  height: 260px;          /* mobile default height */
+}
+
+/* Let desktop have more space */
+@media (min-width: 981px) {
+  #chartWrap {
+    height: 100%;         /* or a bigger fixed height if you prefer */
+    min-height: 320px;
+  }
+}
+
+/* Canvas should fill the wrapper, not define its own height */
+#chartWrap canvas,
+#barChart {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
