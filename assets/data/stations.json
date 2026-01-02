@@ -7,7 +7,19 @@
       "municipality": "Binangonan",
       "lat": 14.420743085139904,
       "lng": 121.18170187696313,
-      "parameters": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.1, "cod_mgL": 22, "turb_ntu": 15, "temp_c": 29.8 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.6, "ph": 7.5, "bod_mgL": 2.7, "cod_mgL": 19, "turb_ntu": 11, "temp_c": 28.8 },
+          "Q2": { "do_mgL": 6.4, "ph": 7.4, "bod_mgL": 2.9, "cod_mgL": 21, "turb_ntu": 13, "temp_c": 29.4 },
+          "Q3": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 19, "temp_c": 30.3 },
+          "Q4": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.2, "cod_mgL": 23, "turb_ntu": 17, "temp_c": 29.6 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.5, "ph": 7.5, "bod_mgL": 2.8, "cod_mgL": 20, "turb_ntu": 12, "temp_c": 29.0 },
+          "Q2": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.0, "cod_mgL": 21, "turb_ntu": 14, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.1, "cod_mgL": 22, "turb_ntu": 15, "temp_c": 29.8 }
+        }
+      }
     },
     {
       "id": "S02",
@@ -16,7 +28,19 @@
       "municipality": "Pila",
       "lat": 14.27236025496613,
       "lng": 121.34139392101912,
-      "parameters": { "do_mgL": 5.4, "ph": 7.2, "bod_mgL": 4.2, "cod_mgL": 28, "turb_ntu": 18, "temp_c": 30.1 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 5.8, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 25, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 5.6, "ph": 7.2, "bod_mgL": 4.0, "cod_mgL": 27, "turb_ntu": 16, "temp_c": 29.7 },
+          "Q3": { "do_mgL": 5.2, "ph": 7.1, "bod_mgL": 4.6, "cod_mgL": 31, "turb_ntu": 22, "temp_c": 30.6 },
+          "Q4": { "do_mgL": 5.4, "ph": 7.2, "bod_mgL": 4.3, "cod_mgL": 29, "turb_ntu": 20, "temp_c": 29.9 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 5.7, "ph": 7.3, "bod_mgL": 3.9, "cod_mgL": 26, "turb_ntu": 15, "temp_c": 29.3 },
+          "Q2": { "do_mgL": 5.5, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 27, "turb_ntu": 17, "temp_c": 29.8 },
+          "Q3": { "do_mgL": 5.4, "ph": 7.2, "bod_mgL": 4.2, "cod_mgL": 28, "turb_ntu": 18, "temp_c": 30.1 }
+        }
+      }
     },
     {
       "id": "S04",
@@ -25,7 +49,19 @@
       "municipality": "Pililia",
       "lat": 14.389105710619617,
       "lng": 121.28404995974387,
-      "parameters": { "do_mgL": 6.8, "ph": 7.6, "bod_mgL": 2.9, "cod_mgL": 20, "turb_ntu": 12, "temp_c": 29.3 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 7.2, "ph": 7.7, "bod_mgL": 2.5, "cod_mgL": 17, "turb_ntu": 8, "temp_c": 28.3 },
+          "Q2": { "do_mgL": 7.0, "ph": 7.6, "bod_mgL": 2.7, "cod_mgL": 19, "turb_ntu": 10, "temp_c": 28.9 },
+          "Q3": { "do_mgL": 6.6, "ph": 7.5, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 16, "temp_c": 29.8 },
+          "Q4": { "do_mgL": 6.8, "ph": 7.6, "bod_mgL": 3.0, "cod_mgL": 21, "turb_ntu": 14, "temp_c": 29.1 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 7.1, "ph": 7.7, "bod_mgL": 2.6, "cod_mgL": 18, "turb_ntu": 9, "temp_c": 28.5 },
+          "Q2": { "do_mgL": 6.9, "ph": 7.6, "bod_mgL": 2.8, "cod_mgL": 19, "turb_ntu": 11, "temp_c": 29.0 },
+          "Q3": { "do_mgL": 6.8, "ph": 7.6, "bod_mgL": 2.9, "cod_mgL": 20, "turb_ntu": 12, "temp_c": 29.3 }
+        }
+      }
     },
     {
       "id": "S05",
@@ -34,8 +70,21 @@
       "municipality": "Binangonan",
       "lat": 14.478381856478066,
       "lng": 121.13379426374593,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S08",
       "code": "ST-08",
@@ -43,8 +92,21 @@
       "municipality": "Los Banos",
       "lat": 14.242812633168896,
       "lng": 121.23759409238136,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S13",
       "code": "ST-13",
@@ -52,8 +114,21 @@
       "municipality": "Taytay",
       "lat": 14.502276472440371,
       "lng": 121.11492156762989,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S15",
       "code": "ST-15",
@@ -61,8 +136,21 @@
       "municipality": "San Pedro",
       "lat": 14.371527453993039,
       "lng": 121.09677474444135,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S16",
       "code": "ST-16",
@@ -70,8 +158,21 @@
       "municipality": "Sta. Rosa",
       "lat": 14.323614592392786,
       "lng": 121.13343979672038,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S17",
       "code": "ST-17",
@@ -79,8 +180,21 @@
       "municipality": "Binangonan",
       "lat": 14.293614199327948,
       "lng": 121.2721681877058,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S18",
       "code": "ST-18",
@@ -88,8 +202,21 @@
       "municipality": "Pagsangjan",
       "lat": 14.314127351616264,
       "lng": 121.38935973426061,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S19",
       "code": "ST-19",
@@ -97,8 +224,21 @@
       "municipality": "Muntinlupa",
       "lat": 14.407457855105392,
       "lng": 121.08287918137387,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S20",
       "code": "ST-20",
@@ -106,8 +246,21 @@
       "municipality": "Binangonan",
       "lat": 14.418908865049843,
       "lng": 121.22193473278213,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S21",
       "code": "ST-21",
@@ -115,8 +268,21 @@
       "municipality": "Cardona",
       "lat": 14.338151031957764,
       "lng": 121.2804554942951,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S22",
       "code": "ST-22",
@@ -124,8 +290,21 @@
       "municipality": "Jala-Jala",
       "lat": 14.257533297948939,
       "lng": 121.26915394586314,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S23",
       "code": "ST-23",
@@ -133,8 +312,21 @@
       "municipality": "Lumban",
       "lat": 14.326206862894168,
       "lng": 121.419567926166,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     },
+
     {
       "id": "S24",
       "code": "ST-24",
@@ -142,7 +334,19 @@
       "municipality": "Cardona",
       "lat": 14.459153005503808,
       "lng": 121.25037875428904,
-      "parameters": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+      "data": {
+        "2024": {
+          "Q1": { "do_mgL": 6.3, "ph": 7.4, "bod_mgL": 3.3, "cod_mgL": 23, "turb_ntu": 13, "temp_c": 28.9 },
+          "Q2": { "do_mgL": 6.1, "ph": 7.3, "bod_mgL": 3.5, "cod_mgL": 25, "turb_ntu": 15, "temp_c": 29.5 },
+          "Q3": { "do_mgL": 5.7, "ph": 7.2, "bod_mgL": 4.1, "cod_mgL": 29, "turb_ntu": 21, "temp_c": 30.4 },
+          "Q4": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.8, "cod_mgL": 27, "turb_ntu": 19, "temp_c": 29.7 }
+        },
+        "2025": {
+          "Q1": { "do_mgL": 6.2, "ph": 7.4, "bod_mgL": 3.4, "cod_mgL": 24, "turb_ntu": 14, "temp_c": 29.1 },
+          "Q2": { "do_mgL": 6.0, "ph": 7.3, "bod_mgL": 3.6, "cod_mgL": 25, "turb_ntu": 16, "temp_c": 29.6 },
+          "Q3": { "do_mgL": 5.9, "ph": 7.3, "bod_mgL": 3.7, "cod_mgL": 26, "turb_ntu": 17, "temp_c": 29.9 }
+        }
+      }
     }
   ]
 }
