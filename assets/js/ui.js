@@ -1,4 +1,8 @@
 window.selectedId = null;
+// Select the lates data.
+window.selectedYear = "2025";
+window.selectedQuarter = "Q3";
+
 
 window.renderList = function renderList(filterText = "") {
   const list = document.getElementById("stationList");
@@ -53,8 +57,15 @@ window.renderParamCards = function renderParamCards(st) {
     { key: "temp_c", label: "Temperature", unit: "°C" }
   ];
 
+  // Pick the currently selected year/quarter
+  const year = window.selectedYear || "2025";
+  const quarter = window.selectedQuarter || "Q3";
+
+  // Safely access the quarter data
+  const quarterData = st?.data?.[year]?.[quarter] || null;
+
   specs.forEach((s) => {
-    const v = st.parameters[s.key];
+    const v = quarterData ? quarterData[s.key] : null;
     const stt = window.statusForParam(s.key, v);
 
     const card = document.createElement("div");
@@ -70,7 +81,8 @@ window.renderParamCards = function renderParamCards(st) {
 
     const status = document.createElement("div");
     status.className = "status";
-    status.innerHTML = `<span class="dot" style="background:${stt.color}; box-shadow:0 0 0 3px rgba(255,255,255,.08)"></span> ${stt.label}`;
+    status.innerHTML =
+      `<span class="dot" style="background:${stt.color}; box-shadow:0 0 0 3px rgba(255,255,255,.08)"></span> ${stt.label}`;
 
     card.appendChild(lab);
     card.appendChild(val);
@@ -78,3 +90,4 @@ window.renderParamCards = function renderParamCards(st) {
     cards.appendChild(card);
   });
 };
+
