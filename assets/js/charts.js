@@ -3,12 +3,12 @@ window.barChart = null;
 window.renderBarChart = function renderBarChart(st) {
   const year = window.selectedYear || "2025";
   const quarter = window.selectedQuarter || "Q3";
-
-  // The new data source (quarter snapshot)
-  const p = st?.data?.[year]?.[quarter] || {};
+  const showTrend = !!window.showTrend;
 
   const labels = ["DO", "pH", "BOD", "COD", "Turb.", "Temp"];
-  const values = [
+
+  // Helper: turn a quarter object into the bar values in label order
+  const toValues = (p = {}) => [
     p.do_mgL ?? null,
     p.ph ?? null,
     p.bod_mgL ?? null,
@@ -17,28 +17,41 @@ window.renderBarChart = function renderBarChart(st) {
     p.temp_c ?? null
   ];
 
-  const datasetLabel = `Station Snapshot • ${year} ${quarter}`;
+  const yearData = st?.data?.[year] || {};
+
+  let datasets = [];
+
+  if (!showTrend) {
+    // ---- Snapshot mode: one dataset for selected quarter ----
+    const p = yearData?.[quarter] || {};
+    datasets = [
+      {
+        label: `Snapshot • ${year} ${quarter}`,
+        data: toValues(p)
+      }
+    ];
+  } else {
+    // ---- Trend mode (still BAR): grouped bars per parameter, one dataset per quarter ----
+    const quarterOrder = ["Q1", "Q2", "Q3", "Q4"];
+
+    datasets = quarterOrder
+      .filter((q) => yearData[q]) // only quarters that exist
+      .map((q) => ({
+        label: `${year} ${q}`,
+        data: toValues(yearData[q])
+      }));
+  }
 
   if (!window.barChart) {
     const ctx = document.getElementById("barChart");
     window.barChart = new Chart(ctx, {
       type: "bar",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: datasetLabel,
-            data: values
-          }
-        ]
-      },
+      data: { labels, datasets },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
-          legend: {
-            labels: {
-              color: "currentColor"
-            }
-          }
+          legend: { labels: { color: "currentColor" } }
         },
         scales: {
           x: {
@@ -53,8 +66,8 @@ window.renderBarChart = function renderBarChart(st) {
       }
     });
   } else {
-    window.barChart.data.datasets[0].label = datasetLabel;
-    window.barChart.data.datasets[0].data = values;
+    window.barChart.data.labels = labels;
+    window.barChart.data.datasets = datasets;
     window.barChart.update();
   }
 };

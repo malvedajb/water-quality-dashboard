@@ -167,6 +167,22 @@ function bootstrap() {
       // Initialize year/quarter controls (if present in HTML)
       setupSnapshotControls();
 
+      const trendToggle = document.getElementById("trendToggle");
+      if (trendToggle) {
+        window.showTrend = trendToggle.checked;
+
+        trendToggle.addEventListener("change", () => {
+          window.showTrend = trendToggle.checked;
+
+          const st =
+            window.STATIONS.find((s) => s.id === window.selectedId) || window.STATIONS[0];
+          if (st && typeof window.renderBarChart === "function") {
+            window.renderBarChart(st);
+          }
+        });
+      }
+
+
       const search = document.getElementById("searchInput");
       if (search) {
         search.addEventListener("input", (e) => {
