@@ -200,7 +200,7 @@ export default function MapPanel() {
         BOD: <b>${p.bod_mgL ?? "—"}</b> mg/L<br/>
         Nitrate: <b>${p.nitrate_mgL ?? "—"}</b> mg/L<br/>
         TSS: <b>${p.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
-        Ammonia: <b>${p.ammonia_mgL ?? "-"}</b> mg/L
+        Phospate: <b>${p.phospate_mgL ?? "-"}</b> mg/L
       </div>
     `;
   }

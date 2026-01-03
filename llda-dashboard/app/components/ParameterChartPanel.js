@@ -42,7 +42,7 @@ export default function ParameterChartPanel() {
   }, [stations, selectedId]);
 
   const chartModel = useMemo(() => {
-    const labels = ["DO", "pH", "BOD", "Nitrate", "TSS.", "Ammonia"];
+    const labels = ["DO", "pH", "BOD", "Nitrate", "TSS.", "Phospate"];
 
     const toValues = (p = {}) => [
       p.do_mgL ?? null,
@@ -50,7 +50,7 @@ export default function ParameterChartPanel() {
       p.bod_mgL ?? null,
       p.nitrate_mgL ?? null,
       p.total_suspended_solids_mgL ?? null,
-      p.ammonia_mgL ?? null,
+      p.phospate_mgL ?? null,
     ];
 
     const yearData = station?.data?.[year] || {};
@@ -130,7 +130,7 @@ export default function ParameterChartPanel() {
       <div className="panel-header">
         <h3>
           Parameter Chart
-          <span>DO, pH, BOD, Nitrate, TSS, Ammonia</span>
+          <span>DO, pH, BOD, Nitrate, TSS, Phospate</span>
         </h3>
       </div>
 

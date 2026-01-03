@@ -8,7 +8,7 @@ const SPECS = [
   { key: "bod_mgL", label: "BOD", unit: "mg/L" },
   { key: "nitrate_mgL", label: "Nitrate", unit: "mg/L" },
   { key: "total_suspended_solids_mgL", label: "TSS", unit: "mg/L" },
-  { key: "ammonia_mgL", label: "Ammonia", unit: "mg/L" },
+  { key: "phospate_mgL", label: "Phospate", unit: "mg/L" },
 ];
 
 export default function StationSummaryPanel() {

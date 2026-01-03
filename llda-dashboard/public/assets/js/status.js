@@ -42,7 +42,7 @@ window.statusForParam = function statusForParam(key, value) {
     return { label: "Poor", color: "var(--bad)" };
   }
 
-  if (key === "ammonia_mgL") {
+  if (key === "phospate_mgL") {
     if (value <= t.temp_c.okMax)
       return { label: "Typical", color: "var(--ok)" };
     if (value <= t.temp_c.warnMax)
