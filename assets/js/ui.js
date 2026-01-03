@@ -54,7 +54,7 @@ window.renderParamCards = function renderParamCards(st) {
     { key: "bod_mgL", label: "BOD", unit: "mg/L" },
     { key: "fecal_coliform_ml", label: "Fecal Coliform", unit: "MPN/100ml" },
     { key: "total_suspended_solids_mgL", label: "TSS", unit: "mg/L" },
-    { key: "temp_c", label: "Temperature", unit: "°C" }
+    { key: "ammonia_mgL", label: "Ammonia", unit: "mg/L" }
   ];
 
   // Pick the currently selected year/quarter

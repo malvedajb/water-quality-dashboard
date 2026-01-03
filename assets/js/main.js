@@ -138,7 +138,7 @@ window.selectStation = function selectStation(id, panTo = false) {
       BOD: <b>${p.bod_mgL ?? "—"}</b> mg/L<br/>
       Fecal Coliform: <b>${p.fecal_coliform_ml ?? "—"}</b> MPN/100ml<br/>
       TSS: <b>${p.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
-      Temp: <b>${p.temp_c ?? "—"}</b> °C
+      Ammonia: <b>${p.ammonia_mgL ?? "-"}</b> mg/L
     </div>
   `;
 
