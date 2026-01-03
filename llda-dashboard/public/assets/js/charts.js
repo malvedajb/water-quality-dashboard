@@ -1,6 +1,9 @@
 window.barChart = null;
 
 window.renderBarChart = function renderBarChart(st) {
+  const wrap = document.getElementById("chartWrap");
+  if (wrap?.dataset?.react === "true") return; // React owns chart now
+
   const year = window.selectedYear || "2025";
   const quarter = window.selectedQuarter || "Q3";
   const showTrend = !!window.showTrend;
@@ -13,7 +16,7 @@ window.renderBarChart = function renderBarChart(st) {
     p.bod_mgL ?? null,
     p.fecal_coliform_ml ?? null,
     p.total_suspended_solids_mgL ?? null,
-    p.ammonia_mgL ?? null
+    p.ammonia_mgL ?? null,
   ];
 
   const yearData = st?.data?.[year] || {};
@@ -31,8 +34,8 @@ window.renderBarChart = function renderBarChart(st) {
     datasets = [
       {
         label: `Snapshot • ${year} ${quarter}`,
-        data: toValues(p)
-      }
+        data: toValues(p),
+      },
     ];
   } else {
     // Trend mode (still BAR): grouped bars per parameter, one dataset per quarter up to selected
@@ -40,7 +43,7 @@ window.renderBarChart = function renderBarChart(st) {
       .filter((q) => yearData[q]) // only quarters that exist
       .map((q) => ({
         label: `${year} ${q}`,
-        data: toValues(yearData[q])
+        data: toValues(yearData[q]),
       }));
 
     // Fallback: if nothing exists (rare), show snapshot so chart doesn't go empty
@@ -49,8 +52,8 @@ window.renderBarChart = function renderBarChart(st) {
       datasets = [
         {
           label: `Snapshot • ${year} ${quarter}`,
-          data: toValues(p)
-        }
+          data: toValues(p),
+        },
       ];
     }
   }
@@ -64,19 +67,19 @@ window.renderBarChart = function renderBarChart(st) {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { labels: { color: "currentColor" } }
+          legend: { labels: { color: "currentColor" } },
         },
         scales: {
           x: {
             ticks: { color: "currentColor" },
-            grid: { color: "rgba(11,18,32,.1)" }
+            grid: { color: "rgba(11,18,32,.1)" },
           },
           y: {
             ticks: { color: "currentColor" },
-            grid: { color: "rgba(11,18,32,.1)" }
-          }
-        }
-      }
+            grid: { color: "rgba(11,18,32,.1)" },
+          },
+        },
+      },
     });
   } else {
     window.barChart.data.labels = labels;

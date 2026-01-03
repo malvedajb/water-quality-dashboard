@@ -38,6 +38,12 @@ function setupSnapshotControls() {
   window.selectedYear = defaultYear;
   yearSel.value = defaultYear;
 
+  window.dispatchEvent(
+    new CustomEvent("snapshot:changed", {
+      detail: { year: window.selectedYear, quarter: window.selectedQuarter },
+    })
+  );
+
   // Quarter default
   qSel.value = window.selectedQuarter || "Q3";
 
@@ -83,6 +89,7 @@ window.selectStation = function selectStation(id, panTo = false) {
   window.selectedQuarter = window.selectedQuarter || "Q3";
 
   window.selectedId = id;
+  window.dispatchEvent(new CustomEvent("station:selected", { detail: { id } }));
 
   const listIsReact =
     document.getElementById("stationList")?.dataset?.react === "true";
@@ -113,11 +120,16 @@ window.selectStation = function selectStation(id, panTo = false) {
     label.textContent = `${st.name} (${st.code || st.id})`;
   }
 
-  if (typeof window.renderParamCards === "function") {
+  // Use react component
+  const cardsReact =
+    document.querySelector(".cards")?.dataset?.react === "true";
+  if (!cardsReact && typeof window.renderParamCards === "function") {
     window.renderParamCards(st);
   }
 
-  if (typeof window.renderBarChart === "function") {
+  const chartIsReact =
+    document.getElementById("chartWrap")?.dataset?.react === "true";
+  if (!chartIsReact && typeof window.renderBarChart === "function") {
     window.renderBarChart(st);
   }
 
@@ -171,8 +183,10 @@ function bootstrap() {
         window.renderList();
       }
 
-      // Initialize year/quarter controls (if present in HTML)
-      setupSnapshotControls();
+      // Setup snapshot controls.
+      const snapIsReact =
+        document.querySelector(".snapshot-controls")?.dataset?.react === "true";
+      if (!snapIsReact) setupSnapshotControls();
 
       const trendToggle = document.getElementById("trendToggle");
       if (trendToggle) {
@@ -184,7 +198,13 @@ function bootstrap() {
           const st =
             window.STATIONS.find((s) => s.id === window.selectedId) ||
             window.STATIONS[0];
-          if (st && typeof window.renderBarChart === "function") {
+          const chartIsReact =
+            document.getElementById("chartWrap")?.dataset?.react === "true";
+          if (
+            !chartIsReact &&
+            st &&
+            typeof window.renderBarChart === "function"
+          ) {
             window.renderBarChart(st);
           }
         });

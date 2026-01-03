@@ -3,7 +3,6 @@ window.selectedId = null;
 window.selectedYear = "2025";
 window.selectedQuarter = "Q3";
 
-
 window.renderList = function renderList(filterText = "") {
   const list = document.getElementById("stationList");
   list.innerHTML = "";
@@ -18,7 +17,8 @@ window.renderList = function renderList(filterText = "") {
 
   filtered.forEach((st) => {
     const item = document.createElement("div");
-    item.className = "station-item" + (st.id === window.selectedId ? " active" : "");
+    item.className =
+      "station-item" + (st.id === window.selectedId ? " active" : "");
     item.onclick = () => window.selectStation(st.id, true);
 
     const left = document.createElement("div");
@@ -29,7 +29,9 @@ window.renderList = function renderList(filterText = "") {
 
     const meta = document.createElement("div");
     meta.className = "station-meta";
-    meta.textContent = `${st.municipality || "Laguna de Bay"} • ${st.code || st.id}`;
+    meta.textContent = `${st.municipality || "Laguna de Bay"} • ${
+      st.code || st.id
+    }`;
 
     left.appendChild(name);
     left.appendChild(meta);
@@ -46,6 +48,7 @@ window.renderList = function renderList(filterText = "") {
 
 window.renderParamCards = function renderParamCards(st) {
   const cards = document.getElementById("paramCards");
+  if (!cards) return; // Clear for react
   cards.innerHTML = "";
 
   const specs = [
@@ -54,7 +57,7 @@ window.renderParamCards = function renderParamCards(st) {
     { key: "bod_mgL", label: "BOD", unit: "mg/L" },
     { key: "fecal_coliform_ml", label: "Fecal Coliform", unit: "MPN/100ml" },
     { key: "total_suspended_solids_mgL", label: "TSS", unit: "mg/L" },
-    { key: "ammonia_mgL", label: "Ammonia", unit: "mg/L" }
+    { key: "ammonia_mgL", label: "Ammonia", unit: "mg/L" },
   ];
 
   // Pick the currently selected year/quarter
@@ -81,8 +84,7 @@ window.renderParamCards = function renderParamCards(st) {
 
     const status = document.createElement("div");
     status.className = "status";
-    status.innerHTML =
-      `<span class="dot" style="background:${stt.color}; box-shadow:0 0 0 3px rgba(255,255,255,.08)"></span> ${stt.label}`;
+    status.innerHTML = `<span class="dot" style="background:${stt.color}; box-shadow:0 0 0 3px rgba(255,255,255,.08)"></span> ${stt.label}`;
 
     card.appendChild(lab);
     card.appendChild(val);
@@ -90,4 +92,3 @@ window.renderParamCards = function renderParamCards(st) {
     cards.appendChild(card);
   });
 };
-
