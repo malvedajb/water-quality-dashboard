@@ -3,7 +3,7 @@ window.STATIONS = [];
 window.loadStations = async function loadStations() {
   console.log("Loading stations.json...");
 
-  const res = await fetch("./assets/data/stations_updated.json");
+  const res = await fetch("./assets/data/stations.json");
 
   if (!res.ok) {
     throw new Error("Failed to load stations.json (status " + res.status + ")");
