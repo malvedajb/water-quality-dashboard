@@ -1,3 +1,6 @@
+// --------------------------------
+// This file is whre the json is loaded.
+//--------------------------------
 window.STATIONS = [];
 
 window.loadStations = async function loadStations() {

@@ -13,7 +13,7 @@
 
   async function boot() {
     // Helpful debug
-    console.log("✅ bootstrap starting...");
+    console.log("bootstrap starting...");
 
     // 1) External libs first
     await loadScript("https://unpkg.com/leaflet@1.9.4/dist/leaflet.js");
@@ -21,12 +21,12 @@
       "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
     );
 
-    console.log("✅ libs loaded:", {
+    console.log("libs loaded:", {
       Leaflet: !!window.L,
       Chart: !!window.Chart,
     });
 
-    // 2) Your app scripts in the exact order you had
+    // Your app scripts in the exact order you had
     await loadScript("/assets/js/config.js");
     await loadScript("/assets/js/status.js");
     await loadScript("/assets/js/data.js");
@@ -35,7 +35,7 @@
     await loadScript("/assets/js/charts.js");
     await loadScript("/assets/js/main.js");
 
-    console.log("✅ app scripts loaded (main.js executed)");
+    console.log("app scripts loaded (main.js executed)");
   }
 
   // Run after DOM is ready (safe for #map, #stationList, etc.)

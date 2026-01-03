@@ -1,3 +1,6 @@
+// -------------------------------
+// This file is incharge of status in the panel. Change values when needen
+// -------------------------------
 window.statusForParam = function statusForParam(key, value) {
   if (value == null || Number.isNaN(value)) {
     return { label: "No data", color: "var(--accent)" };
@@ -20,7 +23,6 @@ window.statusForParam = function statusForParam(key, value) {
     return { label: "Poor", color: "var(--bad)" };
   }
 
-  // For these, lower is better
   if (key === "bod_mgL") {
     if (value <= t.bod_mgL.okMax) return { label: "Good", color: "var(--ok)" };
     if (value <= t.bod_mgL.warnMax)
