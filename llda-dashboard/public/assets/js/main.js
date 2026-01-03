@@ -1,9 +1,6 @@
-// ===============================
-// main.js (DROP-IN REPLACEMENT)
-// Adds Year/Quarter selectors + makes popups/cards/chart use st.data[year][quarter]
-// Defaults to 2025 Q3
-// ===============================
-
+// -------------------------------
+// This JS file loads the data and prepares the list of stations.
+// -------------------------------
 window.selectedId = null;
 
 // Global snapshot selection (shared by cards, chart, popup)
@@ -36,7 +33,7 @@ function setupSnapshotControls() {
   // Pick a safe default year
   const defaultYear = years.includes(window.selectedYear)
     ? window.selectedYear
-    : (years[years.length - 1] || "2025");
+    : years[years.length - 1] || "2025";
 
   window.selectedYear = defaultYear;
   yearSel.value = defaultYear;
@@ -46,15 +43,18 @@ function setupSnapshotControls() {
 
   function refreshCurrentStationViews() {
     const st =
-      window.STATIONS.find((s) => s.id === window.selectedId) || window.STATIONS[0];
+      window.STATIONS.find((s) => s.id === window.selectedId) ||
+      window.STATIONS[0];
     if (!st) return;
 
     // Update panels
-    if (typeof window.renderParamCards === "function") window.renderParamCards(st);
+    if (typeof window.renderParamCards === "function")
+      window.renderParamCards(st);
     if (typeof window.renderBarChart === "function") window.renderBarChart(st);
 
     // Refresh popup snapshot too (no pan)
-    if (typeof window.selectStation === "function") window.selectStation(st.id, false);
+    if (typeof window.selectStation === "function")
+      window.selectStation(st.id, false);
   }
 
   yearSel.addEventListener("change", () => {
@@ -95,13 +95,13 @@ window.selectStation = function selectStation(id, panTo = false) {
     s.__marker.setStyle({
       radius: active ? 10 : 7,
       weight: active ? 3 : 2,
-      fillOpacity: active ? 0.55 : 0.35
+      fillOpacity: active ? 0.55 : 0.35,
     });
   });
 
   if (panTo && window.map) {
     window.map.setView([st.lat, st.lng], Math.max(window.map.getZoom(), 12), {
-      animate: true
+      animate: true,
     });
   }
 
@@ -124,7 +124,7 @@ window.selectStation = function selectStation(id, panTo = false) {
 
   // SAFE quarter data access
   const p =
-    (st?.data?.[year]?.[quarter] && typeof st.data[year][quarter] === "object")
+    st?.data?.[year]?.[quarter] && typeof st.data[year][quarter] === "object"
       ? st.data[year][quarter]
       : {};
 
@@ -156,7 +156,8 @@ function bootstrap() {
     return;
   }
 
-  window.loadStations()
+  window
+    .loadStations()
     .then(() => {
       console.log("stations loaded:", window.STATIONS.length);
 
@@ -175,13 +176,13 @@ function bootstrap() {
           window.showTrend = trendToggle.checked;
 
           const st =
-            window.STATIONS.find((s) => s.id === window.selectedId) || window.STATIONS[0];
+            window.STATIONS.find((s) => s.id === window.selectedId) ||
+            window.STATIONS[0];
           if (st && typeof window.renderBarChart === "function") {
             window.renderBarChart(st);
           }
         });
       }
-
 
       const search = document.getElementById("searchInput");
       if (search) {
@@ -211,7 +212,7 @@ function bootstrap() {
       alert("Prototype failed to load.\n\n" + err.message);
     });
 
-  // Sidebar toggle (safe)
+  // Sidebar toggle
   const sidebar = document.querySelector(".sidebar");
   const toggle = document.getElementById("stationToggle");
 
@@ -219,7 +220,7 @@ function bootstrap() {
     sidebar?.classList.toggle("open");
   });
 
-  // Optional: close sidebar after selecting a station
+  // Close sidebar after selecting a station
   document.getElementById("stationList")?.addEventListener("click", (e) => {
     if (e.target.closest(".station-item")) {
       sidebar?.classList.remove("open");
@@ -227,4 +228,8 @@ function bootstrap() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", bootstrap);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootstrap);
+} else {
+  bootstrap();
+}
