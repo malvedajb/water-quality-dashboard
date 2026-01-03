@@ -9,16 +9,14 @@ export default function ParameterChartPanel() {
   const [stations, setStations] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [year, setYear] = useState("2025");
-  const [quarter, setQuarter] = useState("Q3");
-  const [showTrend, setShowTrend] = useState(true);
+  const [quarter, setQuarter] = useState("Q3"); // kept for snapshot logic elsewhere
 
-  // Read browser globals ONLY after mount + listen for events
+  // Sync from legacy globals + events
   useEffect(() => {
     setStations(window.STATIONS || []);
     setSelectedId(window.selectedId || null);
     setYear(window.selectedYear || "2025");
     setQuarter(window.selectedQuarter || "Q3");
-    setShowTrend(!!window.showTrend);
 
     const onStation = (e) => {
       setSelectedId(e.detail?.id || window.selectedId || null);
@@ -56,39 +54,36 @@ export default function ParameterChartPanel() {
     ];
 
     const yearData = station?.data?.[year] || {};
+
+    // Always show all available quarters for the year
     const quarterOrder = ["Q1", "Q2", "Q3", "Q4"];
+
+    // cutoff up to the selected quarter (Q2 -> [Q1,Q2])
     const cutoffIndex = Math.max(0, quarterOrder.indexOf(quarter));
-    const quartersToShow = quarterOrder.slice(0, cutoffIndex + 1);
+    const quartersToShow = quarterOrder
+      .slice(0, cutoffIndex + 1)
+      .filter((q) => yearData[q]); // only quarters that exist in data
 
-    let datasets = [];
+    let datasets = quartersToShow.map((q) => ({
+      label: `${year} ${q}`,
+      data: toValues(yearData[q]),
+    }));
 
-    if (!showTrend) {
+    // Fallback safety
+    if (!datasets.length) {
       const p = yearData?.[quarter] || {};
       datasets = [
         { label: `Snapshot • ${year} ${quarter}`, data: toValues(p) },
       ];
-    } else {
-      datasets = quartersToShow
-        .filter((q) => yearData[q])
-        .map((q) => ({ label: `${year} ${q}`, data: toValues(yearData[q]) }));
-
-      if (!datasets.length) {
-        const p = yearData?.[quarter] || {};
-        datasets = [
-          { label: `Snapshot • ${year} ${quarter}`, data: toValues(p) },
-        ];
-      }
     }
 
     return { labels, datasets };
-  }, [station, year, quarter, showTrend]);
+  }, [station, year, quarter]);
 
-  // Create chart once, then update on model change
+  // Create chart once, update thereafter
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
-    if (typeof window === "undefined") return; // extra safety
     if (typeof window.Chart !== "function") return;
 
     if (!chartRef.current) {
@@ -120,7 +115,7 @@ export default function ParameterChartPanel() {
     }
   }, [chartModel]);
 
-  // Cleanup chart instance
+  // Cleanup
   useEffect(() => {
     return () => {
       if (chartRef.current) {
@@ -130,25 +125,14 @@ export default function ParameterChartPanel() {
     };
   }, []);
 
-  function onToggleTrend(e) {
-    const v = !!e.target.checked;
-    setShowTrend(v);
-
-    // keep legacy in sync
-    if (typeof window !== "undefined") window.showTrend = v;
-  }
-
   return (
     <div className="panel">
-      <h3>
-        Parameter Chart
-        <span>DO, pH, BOD, COD, Turbidity, Temp</span>
-      </h3>
-
-      <label style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>
-        <input type="checkbox" checked={showTrend} onChange={onToggleTrend} />
-        Show trend (by quarter)
-      </label>
+      <div className="panel-header">
+        <h3>
+          Parameter Chart
+          <span>DO, pH, BOD, Fcl. Col., TSS, Ammonia</span>
+        </h3>
+      </div>
 
       <div id="chartWrap" data-react="true">
         <canvas id="barChart" ref={canvasRef} />

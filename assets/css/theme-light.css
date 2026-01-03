@@ -4,36 +4,38 @@
 
 /* ---------- TOKENS ---------- */
 :root {
-  --bg: #F7FAFB;
-  --panel: #FFFFFF;
-  --card: #FFFFFF;
+  --bg: #f7fafb;
+  --panel: #ffffff;
+  --card: #ffffff;
 
   --text: #0b1220;
-  --muted: rgba(11, 18, 32, .65);
+  --muted: rgba(11, 18, 32, 0.65);
 
-  --line: rgba(11, 18, 32, .12);
+  --line: rgba(11, 18, 32, 0.12);
 
-  --ok: #2EC4B6;
-  --warn: #FF9F1C;
+  --ok: #2ec4b6;
+  --warn: #ff9f1c;
   --bad: #ff6b6b;
-  --accent: #2EC4B6;
+  --accent: #2ec4b6;
 }
 
 /* ---------- BASE ---------- */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--text);
-  background: linear-gradient(180deg, #CBF3F0 0%, var(--bg) 65%);
+  background: linear-gradient(180deg, #cbf3f0 0%, var(--bg) 65%);
 }
 
 /* ---------- HEADER ---------- */
 header {
   padding: 14px 16px;
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, .75);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -42,7 +44,7 @@ header {
 
 header .title {
   font-weight: 700;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   font-size: 16px;
 }
 
@@ -63,7 +65,7 @@ header .subtitle {
 
 /* ---------- SIDEBAR ---------- */
 .sidebar {
-  background: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
@@ -91,13 +93,13 @@ input {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, 0.85);
   color: var(--text);
   outline: none;
 }
 
 input::placeholder {
-  color: rgba(11, 18, 32, .45);
+  color: rgba(11, 18, 32, 0.45);
 }
 
 /* ---------- SNAPSHOT CONTROLS (Year/Quarter) ---------- */
@@ -137,23 +139,23 @@ input::placeholder {
 .station-item {
   padding: 10px;
   border-radius: 12px;
-  border: 1px solid rgba(11, 18, 32, .06);
+  border: 1px solid rgba(11, 18, 32, 0.06);
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   margin-bottom: 6px;
-  background: rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .station-item:hover {
-  border-color: rgba(46, 196, 182, .35);
-  background: rgba(203, 243, 240, .6);
+  border-color: rgba(46, 196, 182, 0.35);
+  background: rgba(203, 243, 240, 0.6);
 }
 
 .station-item.active {
-  border-color: rgba(46, 196, 182, .65);
-  background: rgba(203, 243, 240, .85);
+  border-color: rgba(46, 196, 182, 0.65);
+  background: rgba(203, 243, 240, 0.85);
 }
 
 .station-name {
@@ -175,7 +177,7 @@ input::placeholder {
   border: 1px solid var(--line);
   color: var(--muted);
   white-space: nowrap;
-  background: rgba(255, 255, 255, .7);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 /* ---------- MAIN ---------- */
@@ -190,7 +192,7 @@ input::placeholder {
   border-radius: 14px;
   border: 1px solid var(--line);
   overflow: hidden;
-  background: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, 0.8);
   position: relative;
   min-height: 320px;
 }
@@ -209,7 +211,7 @@ input::placeholder {
 }
 
 .panel {
-  background: rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 12px;
@@ -220,7 +222,7 @@ input::placeholder {
 .panel h3 {
   margin: 0 0 10px 0;
   font-size: 13px;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   color: var(--text);
 
   display: flex;
@@ -259,7 +261,7 @@ input::placeholder {
 }
 
 .card {
-  background: rgba(255, 255, 255, .95);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 10px;
@@ -300,11 +302,11 @@ input::placeholder {
   height: 8px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 3px rgba(46, 196, 182, .18);
+  box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.18);
 }
 
 .footnote {
-  color: rgba(11, 18, 32, .55);
+  color: rgba(11, 18, 32, 0.55);
   font-size: 11px;
   margin-top: 10px;
   line-height: 1.35;
@@ -336,7 +338,9 @@ input::placeholder {
 }
 
 /* Chart.js text color */
-canvas { color: var(--text); }
+canvas {
+  color: var(--text);
+}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 980px) {
@@ -361,7 +365,7 @@ canvas { color: var(--text); }
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, 0.85);
   color: var(--text);
   font-size: 13px;
   font-weight: 600;
@@ -377,7 +381,7 @@ canvas { color: var(--text); }
   border-right: 2px solid var(--muted);
   border-bottom: 2px solid var(--muted);
   transform: rotate(45deg);
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 
 .sidebar.open .station-toggle .chev {
@@ -400,7 +404,7 @@ canvas { color: var(--text); }
     overflow-y: auto;
     margin-top: 8px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, .95);
+    background: rgba(255, 255, 255, 0.95);
     border: 1px solid var(--line);
   }
 
@@ -424,4 +428,35 @@ canvas { color: var(--text); }
       text-align: left;
     }
   }
+}
+
+/* ---------- PANEL HEADER WITH INLINE CONTROL ---------- */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+/* Keep h3 behavior unchanged */
+.panel-header h3 {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+/* Trend checkbox */
+.trend-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.trend-toggle input {
+  margin: 0;
+  cursor: pointer;
 }
