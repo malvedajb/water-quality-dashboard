@@ -429,34 +429,3 @@ canvas {
     }
   }
 }
-
-/* ---------- PANEL HEADER WITH INLINE CONTROL ---------- */
-.panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 6px;
-}
-
-/* Keep h3 behavior unchanged */
-.panel-header h3 {
-  margin: 0;
-  flex: 1 1 auto;
-}
-
-/* Trend checkbox */
-.trend-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.trend-toggle input {
-  margin: 0;
-  cursor: pointer;
-}

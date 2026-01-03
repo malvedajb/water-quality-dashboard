@@ -98,17 +98,6 @@ window.selectStation = function selectStation(id, panTo = false) {
     window.renderList(document.getElementById("searchInput")?.value || "");
   }
 
-  // Marker emphasis
-  window.STATIONS.forEach((s) => {
-    if (!s.__marker) return;
-    const active = s.id === id;
-    s.__marker.setStyle({
-      radius: active ? 10 : 7,
-      weight: active ? 3 : 2,
-      fillOpacity: active ? 0.55 : 0.35,
-    });
-  });
-
   if (panTo && window.map) {
     window.map.setView([st.lat, st.lng], Math.max(window.map.getZoom(), 12), {
       animate: true,
@@ -226,8 +215,13 @@ function bootstrap() {
         return;
       }
 
-      return window.initMap();
+      // Initialize the map
+      const mapOwnedByReact =
+        document.querySelector(".map-wrap")?.dataset?.react === "true";
+      if (!mapOwnedByReact && typeof window.initMap === "function")
+        return window.initMap();
     })
+
     .then(() => {
       if (window.STATIONS.length) {
         window.selectStation(window.STATIONS[0].id, false);
