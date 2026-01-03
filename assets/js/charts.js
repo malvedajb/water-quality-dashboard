@@ -5,15 +5,15 @@ window.renderBarChart = function renderBarChart(st) {
   const quarter = window.selectedQuarter || "Q3";
   const showTrend = !!window.showTrend;
 
-  const labels = ["DO", "pH", "BOD", "COD", "Turb.", "Temp"];
+  const labels = ["DO", "pH", "BOD", "Fcl. Col.", "TSS.", "Ammonia"];
 
   const toValues = (p = {}) => [
     p.do_mgL ?? null,
     p.ph ?? null,
     p.bod_mgL ?? null,
-    p.cod_mgL ?? null,
-    p.turb_ntu ?? null,
-    p.temp_c ?? null
+    p.fecal_coliform_ml ?? null,
+    p.total_suspended_solids_mgL ?? null,
+    p.ammonia_mgL ?? null
   ];
 
   const yearData = st?.data?.[year] || {};

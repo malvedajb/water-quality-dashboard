@@ -52,9 +52,9 @@ window.renderParamCards = function renderParamCards(st) {
     { key: "do_mgL", label: "Dissolved Oxygen", unit: "mg/L" },
     { key: "ph", label: "pH Level", unit: "" },
     { key: "bod_mgL", label: "BOD", unit: "mg/L" },
-    { key: "cod_mgL", label: "COD", unit: "mg/L" },
-    { key: "turb_ntu", label: "Turbidity", unit: "NTU" },
-    { key: "temp_c", label: "Temperature", unit: "°C" }
+    { key: "fecal_coliform_ml", label: "Fecal Coliform", unit: "MPN/100ml" },
+    { key: "total_suspended_solids_mgL", label: "TSS", unit: "mg/L" },
+    { key: "ammonia_mgL", label: "Ammonia", unit: "mg/L" }
   ];
 
   // Pick the currently selected year/quarter

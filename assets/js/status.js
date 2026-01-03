@@ -24,19 +24,19 @@ window.statusForParam = function statusForParam(key, value) {
     return { label: "Poor", color: "var(--bad)" };
   }
 
-  if (key === "cod_mgL") {
+  if (key === "fecal_coliform_ml") {
     if (value <= t.cod_mgL.okMax) return { label: "Good", color: "var(--ok)" };
     if (value <= t.cod_mgL.warnMax) return { label: "Moderate", color: "var(--warn)" };
     return { label: "Poor", color: "var(--bad)" };
   }
 
-  if (key === "turb_ntu") {
+  if (key === "total_suspended_solids_mgL") {
     if (value <= t.turb_ntu.okMax) return { label: "Good", color: "var(--ok)" };
     if (value <= t.turb_ntu.warnMax) return { label: "Moderate", color: "var(--warn)" };
     return { label: "Poor", color: "var(--bad)" };
   }
 
-  if (key === "temp_c") {
+  if (key === "ammonia_mgL") {
     if (value <= t.temp_c.okMax) return { label: "Typical", color: "var(--ok)" };
     if (value <= t.temp_c.warnMax) return { label: "Warm", color: "var(--warn)" };
     return { label: "High", color: "var(--bad)" };
