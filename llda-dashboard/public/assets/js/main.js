@@ -48,19 +48,18 @@ function setupSnapshotControls() {
   qSel.value = window.selectedQuarter || "Q3";
 
   function refreshCurrentStationViews() {
+    window.dispatchEvent(
+      new CustomEvent("snapshot:changed", {
+        detail: { year: window.selectedYear, quarter: window.selectedQuarter },
+      })
+    );
+
     const st =
       window.STATIONS.find((s) => s.id === window.selectedId) ||
       window.STATIONS[0];
-    if (!st) return;
-
-    // Update panels
-    if (typeof window.renderParamCards === "function")
-      window.renderParamCards(st);
-    if (typeof window.renderBarChart === "function") window.renderBarChart(st);
-
-    // Refresh popup snapshot too (no pan)
-    if (typeof window.selectStation === "function")
-      window.selectStation(st.id, false);
+    if (st && typeof window.selectStation === "function") {
+      window.selectStation(st.id, false); // this will trigger map popup via station:selected
+    }
   }
 
   yearSel.addEventListener("change", () => {
@@ -140,7 +139,7 @@ window.selectStation = function selectStation(id, panTo = false) {
       DO: <b>${p.do_mgL ?? "—"}</b> mg/L<br/>
       pH: <b>${p.ph ?? "—"}</b><br/>
       BOD: <b>${p.bod_mgL ?? "—"}</b> mg/L<br/>
-      Fecal Coliform: <b>${p.fecal_coliform_ml ?? "—"}</b> MPN/100ml<br/>
+      Fecal Coliform: <b>${p.nitrate_mgL ?? "—"}</b> MPN/100ml<br/>
       TSS: <b>${p.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
       Ammonia: <b>${p.ammonia_mgL ?? "-"}</b> mg/L
     </div>

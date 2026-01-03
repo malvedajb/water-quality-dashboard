@@ -15,7 +15,7 @@ function waitForLeaflet(timeoutMs = 8000) {
   });
 }
 
-// Laguna Lake Boundary
+// Laguna Lake Boundary (GeoJSON uses [lng, lat] — yours is correct)
 const lagunaLakeBoundary = {
   type: "Feature",
   properties: { name: "Laguna Lake (Approx.)" },
@@ -136,13 +136,15 @@ const lagunaLakeBoundary = {
 
 export default function MapPanel() {
   const mapRef = useRef(null);
+  const boundaryRef = useRef(null);
   const markersRef = useRef(new Map()); // id -> marker
+
   const [stations, setStations] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [year, setYear] = useState("2025");
   const [quarter, setQuarter] = useState("Q3");
 
-  // Load stations once (same JSON for now)
+  // 1) Load stations
   useEffect(() => {
     fetch("/assets/data/stations.json", { cache: "no-store" })
       .then((r) => r.json())
@@ -153,41 +155,25 @@ export default function MapPanel() {
       .catch(console.error);
   }, []);
 
-  // Keep state in sync with legacy globals + events
+  // 2) Listen to global events from legacy/other React components
   useEffect(() => {
-    let cancelled = false;
+    // initial sync
+    setSelectedId(window.selectedId || null);
+    setYear(window.selectedYear || "2025");
+    setQuarter(window.selectedQuarter || "Q3");
 
-    (async () => {
-      const L = await waitForLeaflet();
-      if (cancelled) return;
+    const onStation = (e) =>
+      setSelectedId(e.detail?.id || window.selectedId || null);
+    const onSnap = (e) => {
+      setYear(e.detail?.year || window.selectedYear || "2025");
+      setQuarter(e.detail?.quarter || window.selectedQuarter || "Q3");
+    };
 
-      if (!mapRef.current) {
-        const map = L.map("map", {
-          zoomControl: true,
-        }).setView([14.3, 121.2], 10);
-
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution: "&copy; OpenStreetMap contributors",
-        }).addTo(map);
-
-        // ADD LAGUNA LAKE BOUNDARY
-        const boundaryLayer = L.geoJSON(lagunaLakeBoundary, {
-          style: {
-            color: "#ffcb6aff", // dark outline
-            weight: 4,
-            dashArray: "10 15", // dashed
-            fillColor: "#ffcb6aff", // same as your accent
-            fillOpacity: 0.3,
-          },
-          interactive: false, // clicks pass through
-        }).addTo(map);
-
-        mapRef.current = map;
-      }
-    })().catch(console.error);
-
+    window.addEventListener("station:selected", onStation);
+    window.addEventListener("snapshot:changed", onSnap);
     return () => {
-      cancelled = true;
+      window.removeEventListener("station:selected", onStation);
+      window.removeEventListener("snapshot:changed", onSnap);
     };
   }, []);
 
@@ -197,7 +183,7 @@ export default function MapPanel() {
     return m;
   }, [stations]);
 
-  // Helper: build popup HTML using selected year/quarter (same as your legacy)
+  // Helper: popup HTML
   function popupHtml(st) {
     const p =
       st?.data?.[year]?.[quarter] && typeof st.data[year][quarter] === "object"
@@ -212,14 +198,14 @@ export default function MapPanel() {
         DO: <b>${p.do_mgL ?? "—"}</b> mg/L<br/>
         pH: <b>${p.ph ?? "—"}</b><br/>
         BOD: <b>${p.bod_mgL ?? "—"}</b> mg/L<br/>
-        Fecal Coliform: <b>${p.fecal_coliform_ml ?? "—"}</b> MPN/100ml<br/>
+        Nitrate: <b>${p.nitrate_mgL ?? "—"}</b> mg/L<br/>
         TSS: <b>${p.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
         Ammonia: <b>${p.ammonia_mgL ?? "-"}</b> mg/L
       </div>
     `;
   }
 
-  // Initialize map once
+  // 3) Init map ONCE + boundary ONCE
   useEffect(() => {
     let cancelled = false;
 
@@ -227,77 +213,95 @@ export default function MapPanel() {
       const L = await waitForLeaflet();
       if (cancelled) return;
 
-      // Create map if not created
-      if (!mapRef.current) {
-        const map = L.map("map", {
-          zoomControl: true,
-        }).setView([14.3, 121.2], 10); // Laguna de Bay-ish
+      if (mapRef.current) return;
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution: "&copy; OpenStreetMap contributors",
-        }).addTo(map);
+      const map = L.map("map", { zoomControl: true }).setView(
+        [14.3, 121.2],
+        10
+      );
 
-        mapRef.current = map;
-      }
-    })().catch((err) => console.error("Map init failed:", err));
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      boundaryRef.current = L.geoJSON(lagunaLakeBoundary, {
+        style: {
+          color: "#ffcb6aff",
+          weight: 4,
+          dashArray: "10 15",
+          fillColor: "#ffcb6aff",
+          fillOpacity: 0.3,
+        },
+        interactive: false,
+      }).addTo(map);
+
+      mapRef.current = map;
+    })().catch(console.error);
 
     return () => {
       cancelled = true;
     };
   }, []);
 
-  // Create/update markers when stations load
+  // 4) Create markers ONCE (when stations load)
   useEffect(() => {
     (async () => {
-      const L = await waitForLeaflet();
+      await waitForLeaflet();
       const map = mapRef.current;
       if (!map) return;
 
-      // Clear old markers
-      for (const [, mk] of markersRef.current) {
-        mk.remove();
-      }
+      // clear
+      for (const [, mk] of markersRef.current) mk.remove();
       markersRef.current.clear();
 
-      // Add markers
-      stations.forEach((st) => {
-        if (typeof st.lat !== "number" || typeof st.lng !== "number") return;
+      for (const st of stations) {
+        if (typeof st.lat !== "number" || typeof st.lng !== "number") continue;
 
-        const mk = L.circleMarker([st.lat, st.lng], {
+        const mk = window.L.circleMarker([st.lat, st.lng], {
           radius: 7,
           weight: 2,
           fillOpacity: 0.35,
-        })
-          .addTo(map)
-          .bindPopup(popupHtml(st));
+        }).addTo(map);
 
         mk.on("click", () => {
-          // publish selection (React + legacy compatible)
           window.selectedId = st.id;
-
-          // keep sidebar label logic consistent
           window.dispatchEvent(
             new CustomEvent("station:selected", { detail: { id: st.id } })
           );
-
-          // close mobile sidebar if open
           document.querySelector(".sidebar")?.classList.remove("open");
         });
 
         markersRef.current.set(st.id, mk);
-      });
+      }
     })().catch(console.error);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stations, year, quarter]); // popup content depends on snapshot
+  }, [stations]);
 
-  // React to selection changes: emphasize marker + pan/open popup
+  // 5) Update popup HTML for all markers when snapshot changes
   useEffect(() => {
     (async () => {
-      const L = await waitForLeaflet();
+      await waitForLeaflet();
+
+      for (const [id, mk] of markersRef.current) {
+        const st = stationById.get(id);
+        if (!st) continue;
+        mk.bindPopup(popupHtml(st));
+      }
+
+      // reopen selected popup after updating
+      if (selectedId) {
+        const mk = markersRef.current.get(selectedId);
+        if (mk) mk.openPopup();
+      }
+    })().catch(console.error);
+  }, [year, quarter, selectedId, stationById]);
+
+  // 6) On selection change: emphasize + pan + open popup
+  useEffect(() => {
+    (async () => {
+      await waitForLeaflet();
       const map = mapRef.current;
       if (!map) return;
 
-      // style all markers
       for (const [id, mk] of markersRef.current) {
         const active = id === selectedId;
         mk.setStyle({
@@ -313,15 +317,12 @@ export default function MapPanel() {
       const mk = markersRef.current.get(selectedId);
       if (!st || !mk) return;
 
-      // update popup with current year/quarter + open
-      mk.bindPopup(popupHtml(st)).openPopup();
-
-      // pan a bit closer
+      mk.openPopup();
       map.setView([st.lat, st.lng], Math.max(map.getZoom(), 12), {
         animate: true,
       });
     })().catch(console.error);
-  }, [selectedId, stationById, year, quarter]);
+  }, [selectedId, stationById]);
 
   return (
     <section className="map-wrap" data-react="true">

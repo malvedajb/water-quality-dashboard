@@ -6,7 +6,7 @@ const SPECS = [
   { key: "do_mgL", label: "Dissolved Oxygen", unit: "mg/L" },
   { key: "ph", label: "pH Level", unit: "" },
   { key: "bod_mgL", label: "BOD", unit: "mg/L" },
-  { key: "fecal_coliform_ml", label: "Fecal Coliform", unit: "MPN/100ml" },
+  { key: "nitrate_mgL", label: "Nitrate", unit: "mg/L" },
   { key: "total_suspended_solids_mgL", label: "TSS", unit: "mg/L" },
   { key: "ammonia_mgL", label: "Ammonia", unit: "mg/L" },
 ];
