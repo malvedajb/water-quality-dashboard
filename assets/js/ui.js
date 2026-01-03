@@ -53,7 +53,7 @@ window.renderParamCards = function renderParamCards(st) {
     { key: "ph", label: "pH Level", unit: "" },
     { key: "bod_mgL", label: "BOD", unit: "mg/L" },
     { key: "fecal_coliform_ml", label: "Fecal Coliform", unit: "MPN/100ml" },
-    { key: "turb_ntu", label: "Turbidity", unit: "NTU" },
+    { key: "total_suspended_solids_mgL", label: "TSS", unit: "mg/L" },
     { key: "temp_c", label: "Temperature", unit: "°C" }
   ];
 

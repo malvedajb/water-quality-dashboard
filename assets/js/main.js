@@ -137,7 +137,7 @@ window.selectStation = function selectStation(id, panTo = false) {
       pH: <b>${p.ph ?? "—"}</b><br/>
       BOD: <b>${p.bod_mgL ?? "—"}</b> mg/L<br/>
       Fecal Coliform: <b>${p.fecal_coliform_ml ?? "—"}</b> MPN/100ml<br/>
-      Turbidity: <b>${p.turb_ntu ?? "—"}</b> NTU<br/>
+      TSS: <b>${p.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
       Temp: <b>${p.temp_c ?? "—"}</b> °C
     </div>
   `;
