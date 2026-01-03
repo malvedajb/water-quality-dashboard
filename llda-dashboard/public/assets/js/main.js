@@ -84,7 +84,10 @@ window.selectStation = function selectStation(id, panTo = false) {
 
   window.selectedId = id;
 
-  if (typeof window.renderList === "function") {
+  const listIsReact =
+    document.getElementById("stationList")?.dataset?.react === "true";
+
+  if (!listIsReact && typeof window.renderList === "function") {
     window.renderList(document.getElementById("searchInput")?.value || "");
   }
 
@@ -161,7 +164,10 @@ function bootstrap() {
     .then(() => {
       console.log("stations loaded:", window.STATIONS.length);
 
-      if (typeof window.renderList === "function") {
+      const listIsReact =
+        document.getElementById("stationList")?.dataset?.react === "true";
+
+      if (!listIsReact && typeof window.renderList === "function") {
         window.renderList();
       }
 
@@ -185,11 +191,13 @@ function bootstrap() {
       }
 
       const search = document.getElementById("searchInput");
-      if (search) {
+      document.getElementById("stationList")?.dataset?.react === "true";
+
+      if (search && !listIsReact) {
         search.addEventListener("input", (e) => {
           window.renderList(e.target.value);
         });
-      } else {
+      } else if (!search) {
         console.warn("searchInput not found");
       }
 
