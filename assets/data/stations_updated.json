@@ -335,12 +335,6 @@
       "lat": 14.459153005503808,
       "lng": 121.25037875428904,
       "data": {
-        "2024": {
-          "Q1": { "do_mgL": -, "ph": 7.4, "bod_mgL": -, "fecal_coliform_ml": -, "total_suspended_solids_mgL": -, "ammonia_mgL": - },
-          "Q2": { "do_mgL": -, "ph": 7.4, "bod_mgL": -, "fecal_coliform_ml": -, "total_suspended_solids_mgL": -, "ammonia_mgL": -  },
-          "Q3": { "do_mgL": -, "ph": 7.4, "bod_mgL": -, "fecal_coliform_ml": -, "total_suspended_solids_mgL": -, "ammonia_mgL": -  },
-          "Q4": { "do_mgL": -, "ph": 7.4, "bod_mgL": -, "fecal_coliform_ml": -, "total_suspended_solids_mgL": -, "ammonia_mgL": -  }
-        },
         "2025": {
           "Q1": { "do_mgL": 7.0, "ph": 7.8, "bod_mgL": 2.7, "fecal_coliform_ml": 59.3, "total_suspended_solids_mgL": 33, "ammonia_mgL": 0.040 },
           "Q2": { "do_mgL": 6.3, "ph": 8.2, "bod_mgL": 4.3, "fecal_coliform_ml": 33.0, "total_suspended_solids_mgL": 42, "ammonia_mgL": 0.06 },
