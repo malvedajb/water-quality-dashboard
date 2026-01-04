@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:init": "node scripts/init-db.js",
+    "db:seed": "node scripts/seed-from-json.js",
+    "db:reset": "npm run db:init && npm run db:seed"
   },
   "dependencies": {
     "better-sqlite3": "^12.5.0",
