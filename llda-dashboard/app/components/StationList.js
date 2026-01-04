@@ -8,20 +8,21 @@ export default function StationList() {
   const [activeId, setActiveId] = useState(null);
 
   useEffect(() => {
-    let isMounted = true;
+  let isMounted = true;
 
-    fetch("/assets/data/stations.json", { cache: "no-store" })
-      .then((r) => r.json())
-      .then((json) => {
-        const list = Array.isArray(json) ? json : json.stations || [];
-        if (isMounted) setStations(list);
-      })
-      .catch((err) => console.error("StationList failed to load:", err));
+  fetch("/api/stations", { cache: "no-store" })
+    .then((r) => r.json())
+    .then((json) => {
+      const list = Array.isArray(json) ? json : json.stations || [];
+      if (isMounted) setStations(list);
+    })
+    .catch((err) => console.error("StationList failed to load:", err));
 
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  return () => {
+    isMounted = false;
+  };
+}, []);
+
 
   // Listen to the existing search input (we haven't converted it yet)
   useEffect(() => {

@@ -144,15 +144,21 @@ export default function MapPanel() {
   const [year, setYear] = useState("2025");
   const [quarter, setQuarter] = useState("Q3");
 
-  // 1) Load stations
+  // Load stations
   useEffect(() => {
-    fetch("/assets/data/stations.json", { cache: "no-store" })
-      .then((r) => r.json())
+    fetch("/api/stations", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then((json) => {
         const list = Array.isArray(json) ? json : json.stations || [];
-        setStations(list);
+
+        const normalized = list.map((s) => ({ ...s, data: s.data || {} }));
+
+        setStations(normalized);
       })
-      .catch(console.error);
+      .catch((err) => console.error("MapPanel failed to load stations:", err));
   }, []);
 
   // 2) Listen to global events from legacy/other React components
