@@ -12,10 +12,7 @@ const SPECS = [
   { key: "phospate_mgL", label: "Phospate", unit: "mg/L" },
 ];
 
-/**
- * Simple, local status helper (no window.*).
- * Adjust thresholds later to match your rubric/standards.
- */
+// Simple comparison of values.
 function statusForParam(key, value) {
   if (value === null || value === undefined || Number.isNaN(value)) {
     return { label: "—", color: "rgba(11, 18, 32, .35)" };

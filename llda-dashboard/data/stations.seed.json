@@ -13,33 +13,33 @@
             "do_mgL": 7.3,
             "ph": 8.3,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 35.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 35,
-            "phospate_mgL": 0.09
+            "phospate_mgL": 0.083
           },
           "Q2": {
             "do_mgL": 7.9,
             "ph": 9.0,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 143.3,
+            "nitrate_mgL": 0.07,
             "total_suspended_solids_mgL": 31,
-            "phospate_mgL": 0.063
+            "phospate_mgL": 0.100
           },
           "Q3": {
             "do_mgL": 6.0,
             "ph": 8.1,
             "bod_mgL": 4.3,
-            "nitrate_mgL": 77.7,
+            "nitrate_mgL": 1.00,
             "total_suspended_solids_mgL": 18,
-            "phospate_mgL": 0.201
+            "phospate_mgL": 0.283
           },
           "Q4": {
             "do_mgL": 6.7,
             "ph": 7.9,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 78.0,
+            "nitrate_mgL": 0.33,
             "total_suspended_solids_mgL": 17,
-            "phospate_mgL": 0.197
+            "phospate_mgL": 0.028
           }
         },
         "2025": {
@@ -47,25 +47,25 @@
             "do_mgL": 7.3,
             "ph": 7.9,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 77.3,
+            "nitrate_mgL": 0.40,
             "total_suspended_solids_mgL": 39,
-            "phospate_mgL": 0.18
+            "phospate_mgL": 0.059
           },
           "Q2": {
             "do_mgL": 6.3,
             "ph": 32.4,
             "bod_mgL": 4.7,
-            "nitrate_mgL": 26.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 27,
-            "phospate_mgL": 0.07
+            "phospate_mgL": 0.093
           },
           "Q3": {
             "do_mgL": 6.0,
             "ph": 7.9,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 66.3,
+            "nitrate_mgL": 0.63,
             "total_suspended_solids_mgL": 42,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.187
           }
         }
       }
@@ -83,33 +83,33 @@
             "do_mgL": 8.0,
             "ph": 8.4,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 36.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 30,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.075
           },
           "Q2": {
             "do_mgL": 7.1,
             "ph": 8.2,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 63.0,
+            "nitrate_mgL": 0.23,
             "total_suspended_solids_mgL": 28,
-            "phospate_mgL": 0.063
+            "phospate_mgL": 0.070
           },
           "Q3": {
             "do_mgL": 8.0,
             "ph": 8.5,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 24.0,
+            "nitrate_mgL": 0.07,
             "total_suspended_solids_mgL": 11,
-            "phospate_mgL": 0.101
+            "phospate_mgL": 0.291
           },
           "Q4": {
             "do_mgL": 7.7,
             "ph": 7.7,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 34.3,
+            "nitrate_mgL": 0.30,
             "total_suspended_solids_mgL": 37,
-            "phospate_mgL": 0.077
+            "phospate_mgL": 0.038
           }
         },
         "2025": {
@@ -117,25 +117,25 @@
             "do_mgL": 8.0,
             "ph": 7.9,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 53.3,
+            "nitrate_mgL": 0.40,
             "total_suspended_solids_mgL": 50,
-            "phospate_mgL": 0.111
+            "phospate_mgL": 0.074
           },
           "Q2": {
             "do_mgL": 8.3,
             "ph": 8.7,
             "bod_mgL": 5.3,
-            "nitrate_mgL": 26.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 19,
-            "phospate_mgL": 0.07
+            "phospate_mgL": 0.050
           },
           "Q3": {
             "do_mgL": 7.7,
             "ph": 8.5,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 27.3,
+            "nitrate_mgL": 0.27,
             "total_suspended_solids_mgL": 19,
-            "phospate_mgL": 0.05
+            "phospate_mgL": 0.081
           }
         }
       }
@@ -153,33 +153,33 @@
             "do_mgL": 7.7,
             "ph": 8.3,
             "bod_mgL": 1.3,
-            "nitrate_mgL": 42.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 18,
-            "phospate_mgL": 0.17
+            "phospate_mgL": 0.316
           },
           "Q2": {
             "do_mgL": 8.3,
             "ph": 8.7,
             "bod_mgL": 3.7,
-            "nitrate_mgL": 26.3,
+            "nitrate_mgL": 0.07,
             "total_suspended_solids_mgL": 45,
-            "phospate_mgL": 0.31
+            "phospate_mgL": 0.074
           },
           "Q3": {
             "do_mgL": 8.3,
             "ph": 8.9,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 18.0,
+            "nitrate_mgL": 0.07,
             "total_suspended_solids_mgL": 15,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.113
           },
           "Q4": {
             "do_mgL": 6.3,
             "ph": 7.8,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 19.7,
-            "total_suspended_solids_mgL": 14,
-            "phospate_mgL": 0.163
+            "nitrate_mgL": 0.20,
+            "total_suspended_solids_mgL": 32,
+            "phospate_mgL": 0.017
           }
         },
         "2025": {
@@ -195,17 +195,17 @@
             "do_mgL": 7.0,
             "ph": 8.3,
             "bod_mgL": 4.7,
-            "nitrate_mgL": 25.3,
+            "nitrate_mgL": 23,
             "total_suspended_solids_mgL": 21,
-            "phospate_mgL": 0.07
+            "phospate_mgL": 0.022
           },
           "Q3": {
             "do_mgL": 7.3,
             "ph": 8.5,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 19.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 142,
-            "phospate_mgL": 0.077
+            "phospate_mgL": 0.054
           }
         }
       }
@@ -223,33 +223,33 @@
             "do_mgL": 8.0,
             "ph": 8.4,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 66.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 44,
-            "phospate_mgL": 1.58
+            "phospate_mgL": 0.058
           },
           "Q2": {
             "do_mgL": 9.8,
             "ph": 9.2,
             "bod_mgL": 5.0,
-            "nitrate_mgL": 54.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 34,
-            "phospate_mgL": 0.075
+            "phospate_mgL": 0.145
           },
           "Q3": {
             "do_mgL": 7.0,
             "ph": 8.2,
             "bod_mgL": 4.3,
-            "nitrate_mgL": 55.0,
+            "nitrate_mgL": 0.57,
             "total_suspended_solids_mgL": 34,
-            "phospate_mgL": 0.067
+            "phospate_mgL": 0.242
           },
           "Q4": {
             "do_mgL": 6.7,
             "ph": 7.6,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 45.3,
+            "nitrate_mgL": 0.33,
             "total_suspended_solids_mgL": 25,
-            "phospate_mgL": 0.117
+            "phospate_mgL": 0.038
           }
         },
         "2025": {
@@ -257,25 +257,25 @@
             "do_mgL": 7.3,
             "ph": 8.0,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 47.3,
+            "nitrate_mgL": 0.50,
             "total_suspended_solids_mgL": 57,
-            "phospate_mgL": 0.368
+            "phospate_mgL": 0.110
           },
           "Q2": {
             "do_mgL": 7.0,
             "ph": 8.5,
             "bod_mgL": 5.0,
-            "nitrate_mgL": 35.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 35,
-            "phospate_mgL": 0.09
+            "phospate_mgL": 0.117
           },
           "Q3": {
             "do_mgL": 7.3,
             "ph": 8.4,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 45.0,
+            "nitrate_mgL": 0.67,
             "total_suspended_solids_mgL": 39,
-            "phospate_mgL": 0.057
+            "phospate_mgL": 0.190
           }
         }
       }
@@ -294,33 +294,33 @@
             "do_mgL": 8.0,
             "ph": 8.5,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 107.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 44,
-            "phospate_mgL": 0.05
+            "phospate_mgL": 0.070
           },
           "Q2": {
             "do_mgL": 7.6,
             "ph": 8.5,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 60.7,
+            "nitrate_mgL": 0.03,
             "total_suspended_solids_mgL": 29,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.071
           },
           "Q3": {
             "do_mgL": 8.0,
             "ph": 8.9,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 25.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 14,
-            "phospate_mgL": 0.02
+            "phospate_mgL": 0.203
           },
           "Q4": {
             "do_mgL": 7.7,
             "ph": 8.0,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 36.0,
+            "nitrate_mgL": 0.37,
             "total_suspended_solids_mgL": 16,
-            "phospate_mgL": 0.067
+            "phospate_mgL": 0.038
           }
         },
         "2025": {
@@ -328,25 +328,25 @@
             "do_mgL": 7.7,
             "ph": 7.8,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 77.0,
+            "nitrate_mgL": 0.47,
             "total_suspended_solids_mgL": 68,
-            "phospate_mgL": 0.053
+            "phospate_mgL": 0.088
           },
           "Q2": {
             "do_mgL": 8.3,
             "ph": 8.8,
             "bod_mgL": 4.0,
-            "nitrate_mgL": 31.3,
+            "nitrate_mgL": 0.03,
             "total_suspended_solids_mgL": 20,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.113
           },
           "Q3": {
             "do_mgL": 7.3,
             "ph": 8.4,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 31.0,
+            "nitrate_mgL": 0.37,
             "total_suspended_solids_mgL": 15,
-            "phospate_mgL": 0.03
+            "phospate_mgL": 0.115
           }
         }
       }
@@ -365,33 +365,33 @@
             "do_mgL": 7.3,
             "ph": 8.4,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 160.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 68,
-            "phospate_mgL": 0.07
+            "phospate_mgL": 0.103
           },
           "Q2": {
             "do_mgL": 9.6,
             "ph": 9.3,
             "bod_mgL": 6.0,
-            "nitrate_mgL": 970.7,
+            "nitrate_mgL": 0.10,
             "total_suspended_solids_mgL": 32,
-            "phospate_mgL": 0.46
+            "phospate_mgL": 0.245
           },
           "Q3": {
             "do_mgL": 7.7,
             "ph": 8.5,
             "bod_mgL": 4.3,
-            "nitrate_mgL": 171.3,
+            "nitrate_mgL": 0.20,
             "total_suspended_solids_mgL": 35,
-            "phospate_mgL": 0.03
+            "phospate_mgL": 0.160
           },
           "Q4": {
             "do_mgL": 6.7,
             "ph": 8.1,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 71.7,
+            "nitrate_mgL": 0.23,
             "total_suspended_solids_mgL": 46,
-            "phospate_mgL": 0.087
+            "phospate_mgL": 0.050
           }
         },
         "2025": {
@@ -399,25 +399,25 @@
             "do_mgL": 7.0,
             "ph": 7.8,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 177.0,
+            "nitrate_mgL": 0.60,
             "total_suspended_solids_mgL": 81,
-            "phospate_mgL": 0.146
+            "phospate_mgL": 0.113
           },
           "Q2": {
             "do_mgL": 7.3,
             "ph": 8.5,
             "bod_mgL": 4.3,
-            "nitrate_mgL": 75.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 46,
-            "phospate_mgL": 0.12
+            "phospate_mgL": 0.149
           },
           "Q3": {
             "do_mgL": 6.7,
             "ph": 8.1,
             "bod_mgL": 4.0,
-            "nitrate_mgL": 275.0,
+            "nitrate_mgL": 0.60,
             "total_suspended_solids_mgL": 41,
-            "phospate_mgL": 0.067
+            "phospate_mgL": 0.200
           }
         }
       }
@@ -436,33 +436,33 @@
             "do_mgL": 8.0,
             "ph": 8.5,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 147.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 57,
-            "phospate_mgL": 0.03
+            "phospate_mgL": 0.083
           },
           "Q2": {
             "do_mgL": 7.3,
             "ph": 8.7,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 59.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 26,
-            "phospate_mgL": 0.043
+            "phospate_mgL": 0.113
           },
           "Q3": {
             "do_mgL": 6.0,
             "ph": 8.1,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 93.0,
+            "nitrate_mgL": 0.17,
             "total_suspended_solids_mgL": 12,
-            "phospate_mgL": 0.237
+            "phospate_mgL": 0.373
           },
           "Q4": {
             "do_mgL": 6.0,
             "ph": 7.6,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 431.0,
+            "nitrate_mgL": 0.27,
             "total_suspended_solids_mgL": 22,
-            "phospate_mgL": 0.187
+            "phospate_mgL": 0.064
           }
         },
         "2025": {
@@ -470,23 +470,23 @@
             "do_mgL": 7.0,
             "ph": 7.8,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 70.3,
+            "nitrate_mgL": 0.43,
             "total_suspended_solids_mgL": 37,
-            "phospate_mgL": 0.117
+            "phospate_mgL": 0.092
           },
           "Q2": {
             "do_mgL": 6.0,
             "ph": 8.1,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 146.7,
+            "nitrate_mgL": 0.07,
             "total_suspended_solids_mgL": 33,
-            "phospate_mgL": 0.19
+            "phospate_mgL": 0.123
           },
           "Q3": {
             "do_mgL": 6.0,
             "ph": 8.1,
             "bod_mgL": 4.0,
-            "nitrate_mgL": 1523.7,
+            "nitrate_mgL": 0.197,
             "total_suspended_solids_mgL": 25,
             "phospate_mgL": 0.033
           }
@@ -507,33 +507,33 @@
             "do_mgL": 7.7,
             "ph": 8.3,
             "bod_mgL": 1.3,
-            "nitrate_mgL": 378.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 52,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.080
           },
           "Q2": {
             "do_mgL": 7.2,
             "ph": 8.5,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 45.7,
+            "nitrate_mgL": 0.03,
             "total_suspended_solids_mgL": 31,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.081
           },
           "Q3": {
             "do_mgL": 7.3,
             "ph": 8.4,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 75.0,
+            "nitrate_mgL": 0.10,
             "total_suspended_solids_mgL": 25,
-            "phospate_mgL": 0.25
+            "phospate_mgL": 0.243
           },
           "Q4": {
             "do_mgL": 6.7,
             "ph": 7.6,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 129.7,
+            "nitrate_mgL": 0.33,
             "total_suspended_solids_mgL": 37,
-            "phospate_mgL": 0.077
+            "phospate_mgL": 0.048
           }
         },
         "2025": {
@@ -541,25 +541,25 @@
             "do_mgL": 7.3,
             "ph": 7.7,
             "bod_mgL": 1.3,
-            "nitrate_mgL": 55.0,
+            "nitrate_mgL": 0.47,
             "total_suspended_solids_mgL": 58,
-            "phospate_mgL": 0.09
+            "phospate_mgL": 0.072
           },
           "Q2": {
             "do_mgL": 7.0,
             "ph": 8.5,
             "bod_mgL": 3.7,
-            "nitrate_mgL": 64.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 31,
-            "phospate_mgL": 0.05
+            "phospate_mgL": 0.072
           },
           "Q3": {
             "do_mgL": 7.0,
             "ph": 8.1,
             "bod_mgL": 3.7,
-            "nitrate_mgL": 347.7,
+            "nitrate_mgL": 0.50,
             "total_suspended_solids_mgL": 26,
-            "phospate_mgL": 0.077
+            "phospate_mgL": 0.154
           }
         }
       }
@@ -578,33 +578,33 @@
             "do_mgL": 8.0,
             "ph": 8.4,
             "bod_mgL": 1.3,
-            "nitrate_mgL": 95.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 31,
-            "phospate_mgL": 0.05
+            "phospate_mgL": 0.289
           },
           "Q2": {
             "do_mgL": 8.7,
             "ph": 8.8,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 68.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 25,
-            "phospate_mgL": 0.033
+            "phospate_mgL": 0.055
           },
           "Q3": {
             "do_mgL": 7.7,
             "ph": 8.4,
             "bod_mgL": 43.3,
-            "nitrate_mgL": 22.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 12,
-            "phospate_mgL": 0.013
+            "phospate_mgL": 0.170
           },
           "Q4": {
             "do_mgL": 7.7,
             "ph": 8.1,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 23.0,
+            "nitrate_mgL": 0.27,
             "total_suspended_solids_mgL": 27,
-            "phospate_mgL": 0.083
+            "phospate_mgL": 0.024
           }
         },
         "2025": {
@@ -612,25 +612,25 @@
             "do_mgL": 8.0,
             "ph": 8.0,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 22.7,
+            "nitrate_mgL": 0.30,
             "total_suspended_solids_mgL": 35,
-            "phospate_mgL": 0.052
+            "phospate_mgL": 0.026
           },
           "Q2": {
             "do_mgL": 7.3,
             "ph": 8.5,
             "bod_mgL": 3.7,
-            "nitrate_mgL": 21.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 64,
-            "phospate_mgL": 0.07
+            "phospate_mgL": 0.076
           },
           "Q3": {
             "do_mgL": 6.7,
             "ph": 8.4,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 30.0,
+            "nitrate_mgL": 0.57,
             "total_suspended_solids_mgL": 21,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.121
           }
         }
       }
@@ -649,33 +649,33 @@
             "do_mgL": 8.0,
             "ph": 8.3,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 107.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 51,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.070
           },
           "Q2": {
             "do_mgL": 7.4,
             "ph": 8.5,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 27.0,
+            "nitrate_mgL": 0.20,
             "total_suspended_solids_mgL": 35,
-            "phospate_mgL": 0.043
+            "phospate_mgL": 0.050
           },
           "Q3": {
             "do_mgL": 8.0,
             "ph": 8.4,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 48.7,
+            "nitrate_mgL": 0.13,
             "total_suspended_solids_mgL": 17,
-            "phospate_mgL": 0.026
+            "phospate_mgL": 0.267
           },
           "Q4": {
             "do_mgL": 7.3,
             "ph": 7.7,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 29.7,
+            "nitrate_mgL": 0.33,
             "total_suspended_solids_mgL": 26,
-            "phospate_mgL": 0.087
+            "phospate_mgL": 0.056
           }
         },
         "2025": {
@@ -683,25 +683,25 @@
             "do_mgL": 8.0,
             "ph": 7.9,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 32.3,
+            "nitrate_mgL": 0.37,
             "total_suspended_solids_mgL": 49,
-            "phospate_mgL": 0.033
+            "phospate_mgL": 0.047
           },
           "Q2": {
             "do_mgL": 9.0,
             "ph": 9.0,
             "bod_mgL": 4.0,
-            "nitrate_mgL": 25.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 21,
-            "phospate_mgL": 0.05
+            "phospate_mgL": 0.023
           },
           "Q3": {
             "do_mgL": 8.3,
             "ph": 8.5,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 22.0,
+            "nitrate_mgL": 0.20,
             "total_suspended_solids_mgL": 16,
-            "phospate_mgL": 0.035
+            "phospate_mgL": 0.058
           }
         }
       }
@@ -720,33 +720,33 @@
             "do_mgL": 8.0,
             "ph": 8.4,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 132.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 58,
-            "phospate_mgL": 0.07
+            "phospate_mgL": 0.102
           },
           "Q2": {
             "do_mgL": 6.9,
             "ph": 8.9,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 88.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 35,
-            "phospate_mgL": 0.067
+            "phospate_mgL": 0.133
           },
           "Q3": {
             "do_mgL": 6.3,
             "ph": 8.4,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 118.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 16,
-            "phospate_mgL": 0.073
+            "phospate_mgL": 0.141
           },
           "Q4": {
             "do_mgL": 7.0,
             "ph": 7.9,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 80.7,
+            "nitrate_mgL": 0.23,
             "total_suspended_solids_mgL": 19,
-            "phospate_mgL": 0.11
+            "phospate_mgL": 0.036
           }
         },
         "2025": {
@@ -754,25 +754,25 @@
             "do_mgL": 8.0,
             "ph": 7.9,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 92.3,
+            "nitrate_mgL": 0.43,
             "total_suspended_solids_mgL": 56,
-            "phospate_mgL": 0.057
+            "phospate_mgL": 0.063
           },
           "Q2": {
             "do_mgL": 6.7,
             "ph": 8.4,
             "bod_mgL": 4.0,
-            "nitrate_mgL": 71.0,
+            "nitrate_mgL": 0.03,
             "total_suspended_solids_mgL": 22,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.112
           },
           "Q3": {
             "do_mgL": 7.0,
             "ph": 8.4,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 92.3,
+            "nitrate_mgL": 0.47,
             "total_suspended_solids_mgL": 19,
-            "phospate_mgL": 0.027
+            "phospate_mgL": 0.160
           }
         }
       }
@@ -791,33 +791,33 @@
             "do_mgL": 7.0,
             "ph": 8.3,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 330.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 23,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.080
           },
           "Q2": {
             "do_mgL": 6.7,
             "ph": 8.8,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 307.3,
+            "nitrate_mgL": 0.03,
             "total_suspended_solids_mgL": 20,
-            "phospate_mgL": 0.09
+            "phospate_mgL": 0.098
           },
           "Q3": {
             "do_mgL": 6.7,
             "ph": 8.4,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 149.0,
+            "nitrate_mgL": 0.20,
             "total_suspended_solids_mgL": 13,
-            "phospate_mgL": 0.025
+            "phospate_mgL": 0.142
           },
           "Q4": {
             "do_mgL": 6.0,
             "ph": 7.6,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 77.3,
+            "nitrate_mgL": 0.43,
             "total_suspended_solids_mgL": 22,
-            "phospate_mgL": 0.087
+            "phospate_mgL": 0.045
           }
         },
         "2025": {
@@ -825,25 +825,25 @@
             "do_mgL": 8.0,
             "ph": 7.8,
             "bod_mgL": 2.3,
-            "nitrate_mgL": 93.3,
+            "nitrate_mgL": 0.43,
             "total_suspended_solids_mgL": 36,
-            "phospate_mgL": 0.057
+            "phospate_mgL": 0.051
           },
           "Q2": {
             "do_mgL": 6.3,
             "ph": 7.9,
             "bod_mgL": 4.0,
-            "nitrate_mgL": 178.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 20,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.083
           },
           "Q3": {
             "do_mgL": 6.7,
             "ph": 8.3,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 292.7,
+            "nitrate_mgL": 0.67,
             "total_suspended_solids_mgL": 40,
-            "phospate_mgL": 0.05
+            "phospate_mgL": 0.177
           }
         }
       }
@@ -862,33 +862,33 @@
             "do_mgL": 8.0,
             "ph": 8.3,
             "bod_mgL": 1.7,
-            "nitrate_mgL": 37.7,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 20,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.085
           },
           "Q2": {
             "do_mgL": 9.2,
             "ph": 8.9,
             "bod_mgL": 3.7,
-            "nitrate_mgL": 23.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 24,
-            "phospate_mgL": 0.043
+            "phospate_mgL": 0.057
           },
           "Q3": {
             "do_mgL": 8.3,
             "ph": 8.8,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 25.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 12,
-            "phospate_mgL": 0.02
+            "phospate_mgL": 0.188
           },
           "Q4": {
             "do_mgL": 7.3,
             "ph": 8.0,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 61.7,
+            "nitrate_mgL": 0.23,
             "total_suspended_solids_mgL": 16,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.016
           }
         },
         "2025": {
@@ -896,25 +896,25 @@
             "do_mgL": 8.0,
             "ph": 8.1,
             "bod_mgL": 2.5,
-            "nitrate_mgL": 48.3,
+            "nitrate_mgL": 0.30,
             "total_suspended_solids_mgL": 24,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.018
           },
           "Q2": {
             "do_mgL": 8.0,
             "ph": 8.5,
             "bod_mgL": 4.0,
-            "nitrate_mgL": 33.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 17,
-            "phospate_mgL": 0.1
+            "phospate_mgL": 0.054
           },
           "Q3": {
             "do_mgL": 7.3,
             "ph": 8.3,
             "bod_mgL": 3.5,
-            "nitrate_mgL": 43.3,
+            "nitrate_mgL": 0.60,
             "total_suspended_solids_mgL": 60,
-            "phospate_mgL": 0.047
+            "phospate_mgL": 0.135
           }
         }
       }
@@ -933,23 +933,23 @@
             "do_mgL": 8.0,
             "ph": 8.4,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 41.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 30,
-            "phospate_mgL": 0.08
+            "phospate_mgL": 0.075
           },
           "Q2": {
             "do_mgL": 7.2,
             "ph": 8.4,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 33.3,
+            "nitrate_mgL": 0.10,
             "total_suspended_solids_mgL": 26,
-            "phospate_mgL": 0.043
+            "phospate_mgL": 0.083
           },
           "Q3": {
             "do_mgL": 8.0,
             "ph": 8.8,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 34.0,
+            "nitrate_mgL": 0.03,
             "total_suspended_solids_mgL": 15,
             "phospate_mgL": 0.025
           },
@@ -957,9 +957,9 @@
             "do_mgL": 8.3,
             "ph": 8.2,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 33.7,
+            "nitrate_mgL": 0.20,
             "total_suspended_solids_mgL": 23,
-            "phospate_mgL": 0.087
+            "phospate_mgL": 0.017
           }
         },
         "2025": {
@@ -967,25 +967,25 @@
             "do_mgL": 7.3,
             "ph": 8.0,
             "bod_mgL": 2.5,
-            "nitrate_mgL": 67.7,
+            "nitrate_mgL": 0.37,
             "total_suspended_solids_mgL": 46,
-            "phospate_mgL": 0.035
+            "phospate_mgL": 0.025
           },
           "Q2": {
             "do_mgL": 8.0,
             "ph": 8.7,
             "bod_mgL": 5.0,
-            "nitrate_mgL": 21.3,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 24,
-            "phospate_mgL": 0.1
+            "phospate_mgL": 0.064
           },
           "Q3": {
             "do_mgL": 7.0,
             "ph": 8.2,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 30.0,
+            "nitrate_mgL": 0.63,
             "total_suspended_solids_mgL": 21,
-            "phospate_mgL": 0.047
+            "phospate_mgL": 0.180
           }
         }
       }
@@ -1004,33 +1004,33 @@
             "do_mgL": 8.0,
             "ph": 7.8,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 283.3,
+            "nitrate_mgL": 0.13,
             "total_suspended_solids_mgL": 23,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.067
           },
           "Q2": {
             "do_mgL": 8.1,
             "ph": 8.1,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 38.0,
+            "nitrate_mgL": 0.30,
             "total_suspended_solids_mgL": 27,
-            "phospate_mgL": 0.053
+            "phospate_mgL": 0.060
           },
           "Q3": {
             "do_mgL": 7.7,
             "ph": 7.9,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 79.7,
+            "nitrate_mgL": 0.03,
             "total_suspended_solids_mgL": 26,
-            "phospate_mgL": 0.047
+            "phospate_mgL": 0.321
           },
           "Q4": {
             "do_mgL": 7.0,
             "ph": 7.2,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 71.0,
+            "nitrate_mgL": 0.27,
             "total_suspended_solids_mgL": 12,
-            "phospate_mgL": 0.153
+            "phospate_mgL": 0.048
           }
         },
         "2025": {
@@ -1038,25 +1038,25 @@
             "do_mgL": 7.0,
             "ph": 7.4,
             "bod_mgL": 2.0,
-            "nitrate_mgL": 146.3,
+            "nitrate_mgL": 0.37,
             "total_suspended_solids_mgL": 13,
-            "phospate_mgL": 0.107
+            "phospate_mgL": 0.061
           },
           "Q2": {
             "do_mgL": 6.3,
             "ph": 7.9,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 150.7,
+            "nitrate_mgL": 0.20,
             "total_suspended_solids_mgL": 13,
-            "phospate_mgL": 0.08
+            "phospate_mgL": 0.069
           },
           "Q3": {
             "do_mgL": 7.0,
             "ph": 8.0,
             "bod_mgL": 3.0,
-            "nitrate_mgL": 55.3,
+            "nitrate_mgL": 0.17,
             "total_suspended_solids_mgL": 10,
-            "phospate_mgL": 0.08
+            "phospate_mgL": 0.083
           }
         }
       }
@@ -1075,25 +1075,25 @@
             "do_mgL": 7.0,
             "ph": 7.8,
             "bod_mgL": 2.7,
-            "nitrate_mgL": 59.3,
+            "nitrate_mgL": 0.27,
             "total_suspended_solids_mgL": 33,
-            "phospate_mgL": 0.04
+            "phospate_mgL": 0.033
           },
           "Q2": {
             "do_mgL": 6.3,
             "ph": 8.2,
             "bod_mgL": 4.3,
-            "nitrate_mgL": 33.0,
+            "nitrate_mgL": 0.00,
             "total_suspended_solids_mgL": 42,
-            "phospate_mgL": 0.06
+            "phospate_mgL": 0.060
           },
           "Q3": {
             "do_mgL": 7.0,
             "ph": 8.4,
             "bod_mgL": 3.3,
-            "nitrate_mgL": 50.7,
+            "nitrate_mgL": 0.70,
             "total_suspended_solids_mgL": 31,
-            "phospate_mgL": 0.05
+            "phospate_mgL": 0.157
           }
         }
       }
