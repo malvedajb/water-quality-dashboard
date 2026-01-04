@@ -1,45 +1,55 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDashboard } from "../_state/DashboardStore";
 
 export default function ParameterChartPanel() {
+  const { stations, selectedId, year, quarter } = useDashboard();
+
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
-
-  const [stations, setStations] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
-  const [year, setYear] = useState("2025");
-  const [quarter, setQuarter] = useState("Q3"); // kept for snapshot logic elsewhere
-
-  // Sync from legacy globals + events
-  useEffect(() => {
-    setStations(window.STATIONS || []);
-    setSelectedId(window.selectedId || null);
-    setYear(window.selectedYear || "2025");
-    setQuarter(window.selectedQuarter || "Q3");
-
-    const onStation = (e) => {
-      setSelectedId(e.detail?.id || window.selectedId || null);
-      setStations(window.STATIONS || []);
-    };
-
-    const onSnap = (e) => {
-      setYear(e.detail?.year || window.selectedYear || "2025");
-      setQuarter(e.detail?.quarter || window.selectedQuarter || "Q3");
-    };
-
-    window.addEventListener("station:selected", onStation);
-    window.addEventListener("snapshot:changed", onSnap);
-
-    return () => {
-      window.removeEventListener("station:selected", onStation);
-      window.removeEventListener("snapshot:changed", onSnap);
-    };
-  }, []);
+  const ChartCtorRef = useRef(null);
 
   const station = useMemo(() => {
+    if (!stations.length) return null;
     return stations.find((s) => s.id === selectedId) || stations[0] || null;
   }, [stations, selectedId]);
+
+  const [quartersData, setQuartersData] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  // Fetch all quarters for the selected year (EAV pivot endpoint)
+  useEffect(() => {
+    if (!station?.id) {
+      setQuartersData({});
+      return;
+    }
+
+    let alive = true;
+    setLoading(true);
+
+    fetch(`/api/stations/${station.id}/year?year=${encodeURIComponent(year)}`, {
+      cache: "no-store",
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((json) => {
+        if (!alive) return;
+        setQuartersData(json?.quarters || {});
+      })
+      .catch((err) => {
+        console.error("ParameterChartPanel year load failed:", err);
+        if (!alive) return;
+        setQuartersData({});
+      })
+      .finally(() => alive && setLoading(false));
+
+    return () => {
+      alive = false;
+    };
+  }, [station?.id, year]);
 
   const chartModel = useMemo(() => {
     const labels = ["DO", "pH", "BOD", "Nitrate", "TSS.", "Phospate"];
@@ -53,66 +63,75 @@ export default function ParameterChartPanel() {
       p.phospate_mgL ?? null,
     ];
 
-    const yearData = station?.data?.[year] || {};
-
-    // Always show all available quarters for the year
     const quarterOrder = ["Q1", "Q2", "Q3", "Q4"];
-
-    // cutoff up to the selected quarter (Q2 -> [Q1,Q2])
     const cutoffIndex = Math.max(0, quarterOrder.indexOf(quarter));
     const quartersToShow = quarterOrder
       .slice(0, cutoffIndex + 1)
-      .filter((q) => yearData[q]); // only quarters that exist in data
+      .filter((q) => quartersData?.[q]);
 
     let datasets = quartersToShow.map((q) => ({
       label: `${year} ${q}`,
-      data: toValues(yearData[q]),
+      data: toValues(quartersData[q]),
     }));
 
-    // Fallback safety
     if (!datasets.length) {
-      const p = yearData?.[quarter] || {};
+      const p = quartersData?.[quarter] || {};
       datasets = [
         { label: `Snapshot • ${year} ${quarter}`, data: toValues(p) },
       ];
     }
 
     return { labels, datasets };
-  }, [station, year, quarter]);
+  }, [quartersData, year, quarter]);
 
-  // Create chart once, update thereafter
+  // Create chart once + update on model changes
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    if (typeof window.Chart !== "function") return;
+    let alive = true;
 
-    if (!chartRef.current) {
-      chartRef.current = new window.Chart(canvas, {
-        type: "bar",
-        data: chartModel,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { labels: { color: "currentColor" } },
-          },
-          scales: {
-            x: {
-              ticks: { color: "currentColor" },
-              grid: { color: "rgba(11,18,32,.1)" },
+    (async () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      // Load Chart.js only on client
+      if (!ChartCtorRef.current) {
+        const mod = await import("chart.js/auto");
+        ChartCtorRef.current = mod.default; // Chart constructor
+      }
+      const Chart = ChartCtorRef.current;
+      if (!alive) return;
+
+      if (!chartRef.current) {
+        chartRef.current = new Chart(canvas, {
+          type: "bar",
+          data: chartModel,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: { color: "currentColor" } },
             },
-            y: {
-              ticks: { color: "currentColor" },
-              grid: { color: "rgba(11,18,32,.1)" },
+            scales: {
+              x: {
+                ticks: { color: "currentColor" },
+                grid: { color: "rgba(11,18,32,.1)" },
+              },
+              y: {
+                ticks: { color: "currentColor" },
+                grid: { color: "rgba(11,18,32,.1)" },
+              },
             },
           },
-        },
-      });
-    } else {
-      chartRef.current.data.labels = chartModel.labels;
-      chartRef.current.data.datasets = chartModel.datasets;
-      chartRef.current.update();
-    }
+        });
+      } else {
+        chartRef.current.data.labels = chartModel.labels;
+        chartRef.current.data.datasets = chartModel.datasets;
+        chartRef.current.update();
+      }
+    })().catch(console.error);
+
+    return () => {
+      alive = false;
+    };
   }, [chartModel]);
 
   // Cleanup
@@ -132,6 +151,11 @@ export default function ParameterChartPanel() {
           Parameter Chart
           <span>DO, pH, BOD, Nitrate, TSS, Phospate</span>
         </h3>
+        {loading && (
+          <div style={{ fontSize: 12, opacity: 0.7, paddingTop: 2 }}>
+            Loading {station?.code || station?.id} • {year}…
+          </div>
+        )}
       </div>
 
       <div id="chartWrap" data-react="true">

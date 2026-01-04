@@ -1,23 +1,10 @@
 "use client";
 
+import "leaflet/dist/leaflet.css";
 import { useEffect, useMemo, useRef } from "react";
 import { useDashboard } from "../_state/DashboardStore";
 
-function waitForLeaflet(timeoutMs = 8000) {
-  return new Promise((resolve, reject) => {
-    const start = Date.now();
-    const tick = () => {
-      if (typeof window !== "undefined" && window.L) return resolve(window.L);
-      if (Date.now() - start > timeoutMs)
-        return reject(new Error("Leaflet (window.L) not loaded"));
-      requestAnimationFrame(tick);
-    };
-    tick();
-  });
-}
-
-// keep your existing boundary as-is:
-// Laguna Lake Boundary (GeoJSON uses [lng, lat] — yours is correct)
+// Laguna Lake Boundary
 const lagunaLakeBoundary = {
   type: "Feature",
   properties: { name: "Laguna Lake (Approx.)" },
@@ -136,13 +123,40 @@ const lagunaLakeBoundary = {
   },
 };
 
+function escapeHtml(s) {
+  return String(s ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function popupHtml(st, year, quarter, snap) {
+  return `
+    <div style="font-family:system-ui;font-size:12px;line-height:1.25">
+      <b>${escapeHtml(st.name)}</b><br/>
+      <span style="opacity:.8">${escapeHtml(st.municipality || "")}</span><br/>
+      <span style="opacity:.8">${escapeHtml(year)} ${escapeHtml(
+    quarter
+  )} Snapshot</span><br/><br/>
+      DO: <b>${snap?.do_mgL ?? "—"}</b> mg/L<br/>
+      pH: <b>${snap?.ph ?? "—"}</b><br/>
+      BOD: <b>${snap?.bod_mgL ?? "—"}</b> mg/L<br/>
+      Nitrate: <b>${snap?.nitrate_mgL ?? "—"}</b> mg/L<br/>
+      TSS: <b>${snap?.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
+      Phospate: <b>${snap?.phospate_mgL ?? "—"}</b> mg/L
+    </div>
+  `;
+}
+
 export default function MapPanel() {
   const { stations, selectedId, setSelectedId, year, quarter } = useDashboard();
 
   const mapRef = useRef(null);
   const boundaryRef = useRef(null);
   const markersRef = useRef(new Map());
-  const snapshotCacheRef = useRef(new Map());
+  const leafletRef = useRef(null); // holds L once loaded
 
   const stationById = useMemo(() => {
     const m = new Map();
@@ -150,64 +164,18 @@ export default function MapPanel() {
     return m;
   }, [stations]);
 
-  function snapKey(id, y, q) {
-    return `${id}|${y}|${q}`;
-  }
-
-  async function getSnapshot(stationId, y, q) {
-    const key = snapKey(stationId, y, q);
-    if (snapshotCacheRef.current.has(key))
-      return snapshotCacheRef.current.get(key);
-
-    const res = await fetch(
-      `/api/stations/${stationId}/snapshot?year=${encodeURIComponent(
-        y
-      )}&quarter=${encodeURIComponent(q)}`,
-      { cache: "no-store" }
-    );
-    if (!res.ok) throw new Error(`Snapshot HTTP ${res.status}`);
-
-    const json = await res.json();
-    const snap = json?.snapshot || {};
-    snapshotCacheRef.current.set(key, snap);
-    return snap;
-  }
-
-  function popupHtml(st, y, q, snap, statusText) {
-    if (statusText) {
-      return `
-        <div style="font-family:system-ui;font-size:12px;line-height:1.25">
-          <b>${st.name}</b><br/>
-          <span style="opacity:.8">${st.municipality || ""}</span><br/>
-          <span style="opacity:.8">${y} ${q} Snapshot</span><br/><br/>
-          ${statusText}
-        </div>
-      `;
-    }
-
-    return `
-      <div style="font-family:system-ui;font-size:12px;line-height:1.25">
-        <b>${st.name}</b><br/>
-        <span style="opacity:.8">${st.municipality || ""}</span><br/>
-        <span style="opacity:.8">${y} ${q} Snapshot</span><br/><br/>
-        DO: <b>${snap.do_mgL ?? "—"}</b> mg/L<br/>
-        pH: <b>${snap.ph ?? "—"}</b><br/>
-        BOD: <b>${snap.bod_mgL ?? "—"}</b> mg/L<br/>
-        Nitrate: <b>${snap.nitrate_mgL ?? "—"}</b> mg/L<br/>
-        TSS: <b>${snap.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
-        Phospate: <b>${snap.phospate_mgL ?? "—"}</b> mg/L
-      </div>
-    `;
-  }
-
-  // init map once
+  // Init map once (after Leaflet loads on client)
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
-      const L = await waitForLeaflet();
-      if (cancelled) return;
       if (mapRef.current) return;
+
+      const mod = await import("leaflet");
+      const L = mod.default ?? mod;
+      leafletRef.current = L;
+
+      if (cancelled) return;
 
       const map = L.map("map", { zoomControl: true }).setView(
         [14.3, 121.2],
@@ -237,10 +205,15 @@ export default function MapPanel() {
     };
   }, []);
 
-  // create markers when stations change
+  // Create markers when stations change
   useEffect(() => {
     (async () => {
-      await waitForLeaflet();
+      const L =
+        leafletRef.current ??
+        (await import("leaflet")).default ??
+        (await import("leaflet"));
+      leafletRef.current = L;
+
       const map = mapRef.current;
       if (!map) return;
 
@@ -250,14 +223,17 @@ export default function MapPanel() {
       for (const st of stations) {
         if (typeof st.lat !== "number" || typeof st.lng !== "number") continue;
 
-        const mk = window.L.circleMarker([st.lat, st.lng], {
+        const mk = L.circleMarker([st.lat, st.lng], {
           radius: 7,
           weight: 2,
           fillOpacity: 0.35,
         }).addTo(map);
 
+        mk.bindPopup("Loading…");
+
         mk.on("click", () => {
           setSelectedId(st.id);
+          mk.openPopup();
           document.querySelector(".sidebar")?.classList.remove("open");
         });
 
@@ -266,35 +242,45 @@ export default function MapPanel() {
     })().catch(console.error);
   }, [stations, setSelectedId]);
 
-  // update popups when year/quarter changes
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
-      await waitForLeaflet();
-
-      const y = Number(year);
-      const q = quarter;
+      const L = leafletRef.current;
+      if (!L) return;
 
       for (const [id, mk] of markersRef.current) {
         const st = stationById.get(id);
         if (!st) continue;
 
-        mk.bindPopup(popupHtml(st, y, q, {}, "Loading…"));
+        mk.setPopupContent("Loading…");
 
         try {
-          const snap = await getSnapshot(id, y, q);
+          const res = await fetch(
+            `/api/stations/${id}/snapshot?year=${encodeURIComponent(
+              year
+            )}&quarter=${encodeURIComponent(quarter)}`,
+            { cache: "no-store" }
+          );
+          const json = await res.json();
+          const snap = json?.snapshot || {};
+
           if (cancelled) return;
-          mk.bindPopup(popupHtml(st, y, q, snap));
-        } catch {
+
+          mk.setPopupContent(popupHtml(st, year, quarter, snap));
+        } catch (e) {
+          console.error("Snapshot popup error for", id, year, quarter, e);
           if (cancelled) return;
-          mk.bindPopup(popupHtml(st, y, q, {}, "Failed to load snapshot."));
+          mk.setPopupContent("Failed to load snapshot.");
+          if (cancelled) return;
+          mk.setPopupContent("Failed to load snapshot.");
         }
       }
 
+      // keep popup open for selected station
       if (selectedId) {
         const mk = markersRef.current.get(selectedId);
-        if (mk) mk.openPopup();
+        mk?.openPopup();
       }
     })().catch(console.error);
 
@@ -302,35 +288,6 @@ export default function MapPanel() {
       cancelled = true;
     };
   }, [year, quarter, selectedId, stationById]);
-
-  // selection emphasize + pan
-  useEffect(() => {
-    (async () => {
-      await waitForLeaflet();
-      const map = mapRef.current;
-      if (!map) return;
-
-      for (const [id, mk] of markersRef.current) {
-        const active = id === selectedId;
-        mk.setStyle({
-          radius: active ? 10 : 7,
-          weight: active ? 3 : 2,
-          fillOpacity: active ? 0.55 : 0.35,
-        });
-      }
-
-      if (!selectedId) return;
-
-      const st = stationById.get(selectedId);
-      const mk = markersRef.current.get(selectedId);
-      if (!st || !mk) return;
-
-      mk.openPopup();
-      map.setView([st.lat, st.lng], Math.max(map.getZoom(), 12), {
-        animate: true,
-      });
-    })().catch(console.error);
-  }, [selectedId, stationById]);
 
   return (
     <section className="map-wrap" data-react="true">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useDashboard } from "../_state/DashboardStore";
 
 const SPECS = [
   { key: "do_mgL", label: "Dissolved Oxygen", unit: "mg/L" },
@@ -11,39 +12,67 @@ const SPECS = [
   { key: "phospate_mgL", label: "Phospate", unit: "mg/L" },
 ];
 
+/**
+ * Simple, local status helper (no window.*).
+ * Adjust thresholds later to match your rubric/standards.
+ */
+function statusForParam(key, value) {
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return { label: "—", color: "rgba(11, 18, 32, .35)" };
+  }
+
+  const v = Number(value);
+
+  // Lightweight heuristics (safe defaults)
+  // You can replace these with DENR/LLDA thresholds when you're ready.
+  switch (key) {
+    case "do_mgL":
+      // higher is better
+      if (v >= 6) return { label: "Good", color: "#2EC4B6" };
+      if (v >= 4) return { label: "Fair", color: "#FF9F1C" };
+      return { label: "Poor", color: "#ff6b6b" };
+
+    case "ph":
+      // typical freshwater range ~6.5–8.5 (broad guideline)
+      if (v >= 6.5 && v <= 8.5) return { label: "Normal", color: "#2EC4B6" };
+      if ((v >= 6.0 && v < 6.5) || (v > 8.5 && v <= 9.0))
+        return { label: "Watch", color: "#FF9F1C" };
+      return { label: "Out of range", color: "#ff6b6b" };
+
+    case "bod_mgL":
+      // lower is better
+      if (v <= 3) return { label: "Good", color: "#2EC4B6" };
+      if (v <= 5) return { label: "Fair", color: "#FF9F1C" };
+      return { label: "High", color: "#ff6b6b" };
+
+    case "nitrate_mgL":
+      // lower is better (very rough)
+      if (v <= 10) return { label: "Low", color: "#2EC4B6" };
+      if (v <= 50) return { label: "Moderate", color: "#FF9F1C" };
+      return { label: "High", color: "#ff6b6b" };
+
+    case "total_suspended_solids_mgL":
+      // lower is better (rough)
+      if (v <= 25) return { label: "Clear", color: "#2EC4B6" };
+      if (v <= 50) return { label: "Turbid", color: "#FF9F1C" };
+      return { label: "Very turbid", color: "#ff6b6b" };
+
+    case "phospate_mgL":
+      // lower is better (rough)
+      if (v <= 0.05) return { label: "Low", color: "#2EC4B6" };
+      if (v <= 0.1) return { label: "Moderate", color: "#FF9F1C" };
+      return { label: "High", color: "#ff6b6b" };
+
+    default:
+      return { label: "—", color: "rgba(11, 18, 32, .35)" };
+  }
+}
+
 export default function StationSummaryPanel() {
-  const [stations, setStations] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
-  const [year, setYear] = useState("2025");
-  const [quarter, setQuarter] = useState("Q3");
-
-  // Read browser globals ONLY after mount
-  useEffect(() => {
-    setStations(window.STATIONS || []);
-    setSelectedId(window.selectedId || null);
-    setYear(window.selectedYear || "2025");
-    setQuarter(window.selectedQuarter || "Q3");
-
-    const onStation = (e) => {
-      setSelectedId(e.detail?.id || window.selectedId || null);
-      setStations(window.STATIONS || []);
-    };
-
-    const onSnap = (e) => {
-      setYear(e.detail?.year || window.selectedYear || "2025");
-      setQuarter(e.detail?.quarter || window.selectedQuarter || "Q3");
-    };
-
-    window.addEventListener("station:selected", onStation);
-    window.addEventListener("snapshot:changed", onSnap);
-
-    return () => {
-      window.removeEventListener("station:selected", onStation);
-      window.removeEventListener("snapshot:changed", onSnap);
-    };
-  }, []);
+  const { stations, selectedId, year, quarter } = useDashboard();
 
   const station = useMemo(() => {
+    if (!stations.length) return null;
     return stations.find((s) => s.id === selectedId) || stations[0] || null;
   }, [stations, selectedId]);
 
@@ -52,10 +81,46 @@ export default function StationSummaryPanel() {
     return `${station.name} (${station.code || station.id})`;
   }, [station]);
 
-  const quarterData = useMemo(() => {
-    if (!station) return null;
-    return station?.data?.[year]?.[quarter] || null;
-  }, [station, year, quarter]);
+  const [snapshot, setSnapshot] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!station?.id) {
+      setSnapshot(null);
+      return;
+    }
+
+    let alive = true;
+    setLoading(true);
+
+    fetch(
+      `/api/stations/${station.id}/snapshot?year=${encodeURIComponent(
+        year
+      )}&quarter=${encodeURIComponent(quarter)}`,
+      { cache: "no-store" }
+    )
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((json) => {
+        if (!alive) return;
+        setSnapshot(json?.snapshot || null);
+      })
+      .catch((err) => {
+        console.error("StationSummaryPanel snapshot load failed:", err);
+        if (!alive) return;
+        setSnapshot(null);
+      })
+      .finally(() => {
+        if (!alive) return;
+        setLoading(false);
+      });
+
+    return () => {
+      alive = false;
+    };
+  }, [station?.id, year, quarter]);
 
   return (
     <div className="panel">
@@ -66,20 +131,16 @@ export default function StationSummaryPanel() {
 
       <div className="cards" data-react="true">
         {SPECS.map((s) => {
-          const v = quarterData ? quarterData[s.key] : null;
-
-          const stt =
-            typeof window !== "undefined" &&
-            typeof window.statusForParam === "function"
-              ? window.statusForParam(s.key, v)
-              : { label: "—", color: "currentColor" };
+          const v = snapshot ? snapshot[s.key] : null;
+          const stt = statusForParam(s.key, v);
 
           return (
             <div className="card" key={s.key}>
               <div className="label">{s.label}</div>
 
               <div className="value">
-                {v ?? "—"} <span className="unit">{s.unit}</span>
+                {loading ? "…" : v ?? "—"}{" "}
+                <span className="unit">{s.unit}</span>
               </div>
 
               <div className="status">
@@ -90,7 +151,7 @@ export default function StationSummaryPanel() {
                     boxShadow: "0 0 0 3px rgba(255,255,255,.08)",
                   }}
                 />
-                {stt.label}
+                {loading ? "Loading…" : stt.label}
               </div>
             </div>
           );

@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         {children}
 
         {/* Load everything in guaranteed order */}
-        <Script src="/assets/js/bootstrap.js" strategy="afterInteractive" />
+        {/* <Script src="/assets/js/bootstrap.js" strategy="afterInteractive" /> */}
       </body>
     </html>
   );
