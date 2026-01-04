@@ -3,30 +3,33 @@
 import { useEffect, useMemo, useState } from "react";
 
 export default function SnapshotControls() {
-  const [stations, setStations] = useState([]);
+  const [years, setYears] = useState([]);
+  const [availableQuarters, setAvailableQuarters] = useState([
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+  ]);
   const [year, setYear] = useState("2025");
   const [quarter, setQuarter] = useState("Q3");
 
-  // Grab stations from the same JSON
+  // Load available years/quarters from DB meta endpoint
   useEffect(() => {
-    fetch("/assets/data/stations.json", { cache: "no-store" })
-      .then((r) => r.json())
-      .then((json) => {
-        const list = Array.isArray(json) ? json : json.stations || [];
-        setStations(list);
+    fetch("/api/meta/snapshots", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
       })
-      .catch((err) => console.error("SnapshotControls load failed:", err));
+      .then((json) => {
+        setYears(Array.isArray(json.years) ? json.years : []);
+        setAvailableQuarters(
+          Array.isArray(json.quarters) && json.quarters.length
+            ? json.quarters
+            : ["Q1", "Q2", "Q3", "Q4"]
+        );
+      })
+      .catch((err) => console.error("SnapshotControls meta load failed:", err));
   }, []);
-
-  // Compute available years from data
-  const years = useMemo(() => {
-    const set = new Set();
-    for (const st of stations) {
-      const data = st.data || {};
-      Object.keys(data).forEach((y) => set.add(y));
-    }
-    return Array.from(set).sort();
-  }, [stations]);
 
   // Pick safe defaults once years are known
   useEffect(() => {
@@ -37,32 +40,35 @@ export default function SnapshotControls() {
 
     window.selectedYear = defaultYear;
     window.selectedQuarter = quarter;
-  }, [years]);
+  }, [years]); // keep same behavior you had
 
-  // Refresh views whenever we chaange values.
+  // Notify the rest of the app whenever year/quarter changes
   useEffect(() => {
     window.selectedYear = year;
     window.selectedQuarter = quarter;
 
-    // Refresh current station views using legacy functions (for now)
+    window.dispatchEvent(
+      new CustomEvent("snapshot:changed", {
+        detail: { year, quarter },
+      })
+    );
+
+    // Keep legacy compatibility: re-select current station to refresh views
     const st =
       window.STATIONS?.find((s) => s.id === window.selectedId) ||
       window.STATIONS?.[0];
 
-    if (!st) return;
-
-    // Tell the rest of the app (React + legacy) that snapshot changed
-    window.dispatchEvent(
-      new CustomEvent("snapshot:changed", {
-        detail: { year: window.selectedYear, quarter: window.selectedQuarter },
-      })
-    );
-
     if (st && typeof window.selectStation === "function") {
-      // false = do not pan; selectStation will rebuild popup HTML using new year/quarter
       window.selectStation(st.id, false);
     }
   }, [year, quarter]);
+
+  const quarterOptions = useMemo(() => {
+    // Ensure a stable order Q1..Q4 if availableQuarters is weird
+    const order = ["Q1", "Q2", "Q3", "Q4"];
+    const set = new Set(availableQuarters);
+    return order.filter((q) => set.has(q));
+  }, [availableQuarters]);
 
   return (
     <div className="snapshot-controls" data-react="true">
@@ -80,10 +86,11 @@ export default function SnapshotControls() {
       <label>
         Quarter:
         <select value={quarter} onChange={(e) => setQuarter(e.target.value)}>
-          <option value="Q1">Q1</option>
-          <option value="Q2">Q2</option>
-          <option value="Q3">Q3</option>
-          <option value="Q4">Q4</option>
+          {quarterOptions.map((q) => (
+            <option key={q} value={q}>
+              {q}
+            </option>
+          ))}
         </select>
       </label>
     </div>

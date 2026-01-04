@@ -138,13 +138,14 @@ export default function MapPanel() {
   const mapRef = useRef(null);
   const boundaryRef = useRef(null);
   const markersRef = useRef(new Map()); // id -> marker
+  const snapshotCacheRef = useRef(new Map()); // "S01|2025|Q3" -> snapshot object
 
   const [stations, setStations] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [year, setYear] = useState("2025");
   const [quarter, setQuarter] = useState("Q3");
 
-  // Load stations
+  // Load stations (from SQLite API)
   useEffect(() => {
     fetch("/api/stations", { cache: "no-store" })
       .then((r) => {
@@ -153,17 +154,13 @@ export default function MapPanel() {
       })
       .then((json) => {
         const list = Array.isArray(json) ? json : json.stations || [];
-
-        const normalized = list.map((s) => ({ ...s, data: s.data || {} }));
-
-        setStations(normalized);
+        setStations(list);
       })
       .catch((err) => console.error("MapPanel failed to load stations:", err));
   }, []);
 
-  // 2) Listen to global events from legacy/other React components
+  // Listen to global events from legacy/other components
   useEffect(() => {
-    // initial sync
     setSelectedId(window.selectedId || null);
     setYear(window.selectedYear || "2025");
     setQuarter(window.selectedQuarter || "Q3");
@@ -189,36 +186,65 @@ export default function MapPanel() {
     return m;
   }, [stations]);
 
-  // Helper: popup HTML
-  function popupHtml(st) {
-    const p =
-      st?.data?.[year]?.[quarter] && typeof st.data[year][quarter] === "object"
-        ? st.data[year][quarter]
-        : {};
+  function snapKey(id, y, q) {
+    return `${id}|${y}|${q}`;
+  }
+
+  async function getSnapshot(stationId, y, q) {
+    const key = snapKey(stationId, y, q);
+    if (snapshotCacheRef.current.has(key)) {
+      return snapshotCacheRef.current.get(key);
+    }
+
+    const res = await fetch(
+      `/api/stations/${stationId}/snapshot?year=${encodeURIComponent(
+        y
+      )}&quarter=${encodeURIComponent(q)}`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) throw new Error(`Snapshot HTTP ${res.status}`);
+
+    const json = await res.json();
+    const snap = json?.snapshot || {};
+    snapshotCacheRef.current.set(key, snap);
+    return snap;
+  }
+
+  function popupHtmlFromSnapshot(st, y, q, snap, statusText) {
+    if (statusText) {
+      return `
+        <div style="font-family:system-ui;font-size:12px;line-height:1.25">
+          <b>${st.name}</b><br/>
+          <span style="opacity:.8">${st.municipality || ""}</span><br/>
+          <span style="opacity:.8">${y} ${q} Snapshot</span><br/><br/>
+          ${statusText}
+        </div>
+      `;
+    }
 
     return `
       <div style="font-family:system-ui;font-size:12px;line-height:1.25">
         <b>${st.name}</b><br/>
         <span style="opacity:.8">${st.municipality || ""}</span><br/>
-        <span style="opacity:.8">${year} ${quarter} Snapshot</span><br/><br/>
-        DO: <b>${p.do_mgL ?? "—"}</b> mg/L<br/>
-        pH: <b>${p.ph ?? "—"}</b><br/>
-        BOD: <b>${p.bod_mgL ?? "—"}</b> mg/L<br/>
-        Nitrate: <b>${p.nitrate_mgL ?? "—"}</b> mg/L<br/>
-        TSS: <b>${p.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
-        Phospate: <b>${p.phospate_mgL ?? "-"}</b> mg/L
+        <span style="opacity:.8">${y} ${q} Snapshot</span><br/><br/>
+        DO: <b>${snap.do_mgL ?? "—"}</b> mg/L<br/>
+        pH: <b>${snap.ph ?? "—"}</b><br/>
+        BOD: <b>${snap.bod_mgL ?? "—"}</b> mg/L<br/>
+        Nitrate: <b>${snap.nitrate_mgL ?? "—"}</b> mg/L<br/>
+        TSS: <b>${snap.total_suspended_solids_mgL ?? "—"}</b> mg/L<br/>
+        Phospate: <b>${snap.phospate_mgL ?? "—"}</b> mg/L
       </div>
     `;
   }
 
-  // 3) Init map ONCE + boundary ONCE
+  // Init map ONCE + boundary ONCE
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
       const L = await waitForLeaflet();
       if (cancelled) return;
-
       if (mapRef.current) return;
 
       const map = L.map("map", { zoomControl: true }).setView(
@@ -249,14 +275,13 @@ export default function MapPanel() {
     };
   }, []);
 
-  // 4) Create markers ONCE (when stations load)
+  // Create markers ONCE (when stations load)
   useEffect(() => {
     (async () => {
       await waitForLeaflet();
       const map = mapRef.current;
       if (!map) return;
 
-      // clear
       for (const [, mk] of markersRef.current) mk.remove();
       markersRef.current.clear();
 
@@ -282,26 +307,47 @@ export default function MapPanel() {
     })().catch(console.error);
   }, [stations]);
 
-  // 5) Update popup HTML for all markers when snapshot changes
+  // Update popup HTML for all markers when snapshot changes
   useEffect(() => {
+    let cancelled = false;
+
     (async () => {
       await waitForLeaflet();
+
+      const y = Number(year);
+      const q = quarter;
 
       for (const [id, mk] of markersRef.current) {
         const st = stationById.get(id);
         if (!st) continue;
-        mk.bindPopup(popupHtml(st));
+
+        // placeholder so popup isn't blank
+        mk.bindPopup(popupHtmlFromSnapshot(st, y, q, {}, "Loading…"));
+
+        try {
+          const snap = await getSnapshot(id, y, q);
+          if (cancelled) return;
+          mk.bindPopup(popupHtmlFromSnapshot(st, y, q, snap));
+        } catch (e) {
+          if (cancelled) return;
+          mk.bindPopup(
+            popupHtmlFromSnapshot(st, y, q, {}, "Failed to load snapshot.")
+          );
+        }
       }
 
-      // reopen selected popup after updating
       if (selectedId) {
         const mk = markersRef.current.get(selectedId);
         if (mk) mk.openPopup();
       }
     })().catch(console.error);
+
+    return () => {
+      cancelled = true;
+    };
   }, [year, quarter, selectedId, stationById]);
 
-  // 6) On selection change: emphasize + pan + open popup
+  // On selection change: emphasize + pan + open popup
   useEffect(() => {
     (async () => {
       await waitForLeaflet();
