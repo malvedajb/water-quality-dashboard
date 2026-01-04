@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { useDashboard } from "../_state/DashboardStore";
 
 function waitForLeaflet(timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
@@ -15,6 +16,7 @@ function waitForLeaflet(timeoutMs = 8000) {
   });
 }
 
+// keep your existing boundary as-is:
 // Laguna Lake Boundary (GeoJSON uses [lng, lat] — yours is correct)
 const lagunaLakeBoundary = {
   type: "Feature",
@@ -135,50 +137,12 @@ const lagunaLakeBoundary = {
 };
 
 export default function MapPanel() {
+  const { stations, selectedId, setSelectedId, year, quarter } = useDashboard();
+
   const mapRef = useRef(null);
   const boundaryRef = useRef(null);
-  const markersRef = useRef(new Map()); // id -> marker
-  const snapshotCacheRef = useRef(new Map()); // "S01|2025|Q3" -> snapshot object
-
-  const [stations, setStations] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
-  const [year, setYear] = useState("2025");
-  const [quarter, setQuarter] = useState("Q3");
-
-  // Load stations (from SQLite API)
-  useEffect(() => {
-    fetch("/api/stations", { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then((json) => {
-        const list = Array.isArray(json) ? json : json.stations || [];
-        setStations(list);
-      })
-      .catch((err) => console.error("MapPanel failed to load stations:", err));
-  }, []);
-
-  // Listen to global events from legacy/other components
-  useEffect(() => {
-    setSelectedId(window.selectedId || null);
-    setYear(window.selectedYear || "2025");
-    setQuarter(window.selectedQuarter || "Q3");
-
-    const onStation = (e) =>
-      setSelectedId(e.detail?.id || window.selectedId || null);
-    const onSnap = (e) => {
-      setYear(e.detail?.year || window.selectedYear || "2025");
-      setQuarter(e.detail?.quarter || window.selectedQuarter || "Q3");
-    };
-
-    window.addEventListener("station:selected", onStation);
-    window.addEventListener("snapshot:changed", onSnap);
-    return () => {
-      window.removeEventListener("station:selected", onStation);
-      window.removeEventListener("snapshot:changed", onSnap);
-    };
-  }, []);
+  const markersRef = useRef(new Map());
+  const snapshotCacheRef = useRef(new Map());
 
   const stationById = useMemo(() => {
     const m = new Map();
@@ -192,9 +156,8 @@ export default function MapPanel() {
 
   async function getSnapshot(stationId, y, q) {
     const key = snapKey(stationId, y, q);
-    if (snapshotCacheRef.current.has(key)) {
+    if (snapshotCacheRef.current.has(key))
       return snapshotCacheRef.current.get(key);
-    }
 
     const res = await fetch(
       `/api/stations/${stationId}/snapshot?year=${encodeURIComponent(
@@ -202,7 +165,6 @@ export default function MapPanel() {
       )}&quarter=${encodeURIComponent(q)}`,
       { cache: "no-store" }
     );
-
     if (!res.ok) throw new Error(`Snapshot HTTP ${res.status}`);
 
     const json = await res.json();
@@ -211,7 +173,7 @@ export default function MapPanel() {
     return snap;
   }
 
-  function popupHtmlFromSnapshot(st, y, q, snap, statusText) {
+  function popupHtml(st, y, q, snap, statusText) {
     if (statusText) {
       return `
         <div style="font-family:system-ui;font-size:12px;line-height:1.25">
@@ -238,7 +200,7 @@ export default function MapPanel() {
     `;
   }
 
-  // Init map ONCE + boundary ONCE
+  // init map once
   useEffect(() => {
     let cancelled = false;
 
@@ -275,7 +237,7 @@ export default function MapPanel() {
     };
   }, []);
 
-  // Create markers ONCE (when stations load)
+  // create markers when stations change
   useEffect(() => {
     (async () => {
       await waitForLeaflet();
@@ -295,19 +257,16 @@ export default function MapPanel() {
         }).addTo(map);
 
         mk.on("click", () => {
-          window.selectedId = st.id;
-          window.dispatchEvent(
-            new CustomEvent("station:selected", { detail: { id: st.id } })
-          );
+          setSelectedId(st.id);
           document.querySelector(".sidebar")?.classList.remove("open");
         });
 
         markersRef.current.set(st.id, mk);
       }
     })().catch(console.error);
-  }, [stations]);
+  }, [stations, setSelectedId]);
 
-  // Update popup HTML for all markers when snapshot changes
+  // update popups when year/quarter changes
   useEffect(() => {
     let cancelled = false;
 
@@ -321,18 +280,15 @@ export default function MapPanel() {
         const st = stationById.get(id);
         if (!st) continue;
 
-        // placeholder so popup isn't blank
-        mk.bindPopup(popupHtmlFromSnapshot(st, y, q, {}, "Loading…"));
+        mk.bindPopup(popupHtml(st, y, q, {}, "Loading…"));
 
         try {
           const snap = await getSnapshot(id, y, q);
           if (cancelled) return;
-          mk.bindPopup(popupHtmlFromSnapshot(st, y, q, snap));
-        } catch (e) {
+          mk.bindPopup(popupHtml(st, y, q, snap));
+        } catch {
           if (cancelled) return;
-          mk.bindPopup(
-            popupHtmlFromSnapshot(st, y, q, {}, "Failed to load snapshot.")
-          );
+          mk.bindPopup(popupHtml(st, y, q, {}, "Failed to load snapshot."));
         }
       }
 
@@ -347,7 +303,7 @@ export default function MapPanel() {
     };
   }, [year, quarter, selectedId, stationById]);
 
-  // On selection change: emphasize + pan + open popup
+  // selection emphasize + pan
   useEffect(() => {
     (async () => {
       await waitForLeaflet();

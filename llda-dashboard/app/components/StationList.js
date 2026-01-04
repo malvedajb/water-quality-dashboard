@@ -1,30 +1,39 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useDashboard } from "../_state/DashboardStore";
 
 export default function StationList() {
-  const [stations, setStations] = useState([]);
+  const { stations, setStations, selectedId, setSelectedId } = useDashboard();
   const [query, setQuery] = useState("");
-  const [activeId, setActiveId] = useState(null);
 
+  // Load stations once from SQLITE
   useEffect(() => {
-  let isMounted = true;
+    let alive = true;
 
-  fetch("/api/stations", { cache: "no-store" })
-    .then((r) => r.json())
-    .then((json) => {
-      const list = Array.isArray(json) ? json : json.stations || [];
-      if (isMounted) setStations(list);
-    })
-    .catch((err) => console.error("StationList failed to load:", err));
+    fetch("/api/stations", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((json) => {
+        const list = Array.isArray(json) ? json : json.stations || [];
+        if (!alive) return;
 
-  return () => {
-    isMounted = false;
-  };
-}, []);
+        setStations(list);
 
+        // pick a default selection if none yet
+        if (!selectedId && list.length) setSelectedId(list[0].id);
+      })
+      .catch((err) => console.error("StationList failed to load:", err));
 
-  // Listen to the existing search input (we haven't converted it yet)
+    return () => {
+      alive = false;
+    };
+  }, [setStations, setSelectedId]);
+
+  // DOM input inregration
+
   useEffect(() => {
     const input = document.getElementById("searchInput");
     if (!input) return;
@@ -33,18 +42,8 @@ export default function StationList() {
     input.addEventListener("input", handler);
 
     setQuery(input.value || "");
-
     return () => input.removeEventListener("input", handler);
   }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (window.selectedId !== activeId)
-        setActiveId(window.selectedId || null);
-    }, 150);
-
-    return () => clearInterval(timer);
-  }, [activeId]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -57,11 +56,7 @@ export default function StationList() {
   }, [stations, query]);
 
   function onPickStation(id) {
-    if (typeof window.selectStation === "function") {
-      window.selectStation(id, true);
-    }
-
-    // close mobile dropdown after picking
+    setSelectedId(id);
     document.querySelector(".sidebar")?.classList.remove("open");
   }
 
@@ -70,7 +65,7 @@ export default function StationList() {
       {filtered.map((s) => (
         <div
           key={s.id}
-          className={`station-item ${activeId === s.id ? "active" : ""}`}
+          className={`station-item ${selectedId === s.id ? "active" : ""}`}
           onClick={() => onPickStation(s.id)}
           role="button"
           tabIndex={0}
